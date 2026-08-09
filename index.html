@@ -35,7 +35,7 @@
   <div id="g7scan" style="position:fixed;inset:0;z-index:60;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(63,208,230,0.045) 0px,rgba(63,208,230,0.045) 1px,transparent 1px,transparent 3px)"></div>
   <div style="position:fixed;inset:0;z-index:59;pointer-events:none;background:radial-gradient(120% 80% at 50% 15%, rgba(19,92,108,0.22) 0%, transparent 55%), radial-gradient(120% 90% at 50% 30%, transparent 45%, rgba(0,0,0,0.7) 100%)"></div>
 
-  <audio id="g7audio" src="uploads/bgm_music.mp3" loop preload="auto"></audio>
+  <audio id="g7audio" preload="auto" playsinline></audio>
 
   <!-- ══════════ ACCESS TERMINAL / COVER ══════════ -->
   <section id="g7cover" style="position:relative;z-index:2;min-height:100dvh;box-sizing:border-box;padding:14px 12px calc(18px + env(safe-area-inset-bottom))">
@@ -86,11 +86,11 @@
           <div style="display:inline-block;border:1px solid var(--color-alert);color:var(--color-alert);font-size:10px;letter-spacing:0.22em;padding:5px 9px;margin-bottom:14px">TOP SECRET // EYES ONLY</div>
           <div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:6px">
             <div style="font-size:clamp(46px,13vw,86px);line-height:0.85;color:var(--color-accent);text-shadow:0 0 26px rgba(63,208,230,0.45);letter-spacing:-0.02em">07</div>
-            <div style="padding-bottom:6px"><div style="font-size:12px;letter-spacing:0.12em;color:var(--color-neutral-100)">PERSONNEL ARCHIVE</div><div style="font-size:9.5px;letter-spacing:0.14em;color:var(--color-neutral-500)">TASK FORCE G7 — GENERATION TWO</div></div>
+            <div style="padding-bottom:6px"><div style="font-size:12px;letter-spacing:0.12em;color:var(--color-neutral-100)">PERSONNEL ARCHIVE</div><div style="font-size:9.5px;letter-spacing:0.14em;color:var(--color-neutral-500)">TASK FORCE G7 · GENERATION TWO</div></div>
           </div>
           <div style="height:1px;background:linear-gradient(to right,transparent,var(--color-divider) 24px,var(--color-divider) calc(100% - 24px),transparent);margin:12px 0"></div>
           <div style="display:grid;gap:6px;font-size:10.5px;line-height:1.6">
-            <div style="display:grid;grid-template-columns:86px 1fr;gap:8px"><span style="color:var(--color-neutral-600)">SUBJECT</span><span style="color:var(--color-neutral-200)">OPERATIVE "ROOK"</span></div>
+            <div style="display:grid;grid-template-columns:86px 1fr;gap:8px"><span style="color:var(--color-neutral-600)">SUBJECT</span><span style="color:var(--color-neutral-200)">VAUGHN "ROOK"</span></div>
             <div style="display:grid;grid-template-columns:86px 1fr;gap:8px"><span style="color:var(--color-neutral-600)">CLEARANCE</span><span style="color:var(--color-neutral-200)">LEVEL 4 REQUIRED</span></div>
             <div style="display:grid;grid-template-columns:86px 1fr;gap:8px"><span style="color:var(--color-neutral-600)">AUTH CODE</span><span style="color:var(--color-accent-300)">GUEST OVERRIDE ACTIVE</span></div>
             <div style="display:grid;grid-template-columns:86px 1fr;gap:8px"><span style="color:var(--color-neutral-600)">CUSTODIAN</span><span style="color:var(--color-neutral-200)">VESPERIAN INTELLIGENCE SVCS</span></div>
@@ -131,7 +131,8 @@
           <div style="font-size:11px;letter-spacing:0.14em;color:var(--color-neutral-100);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">VDN // ARCHIVE FILE 07</div>
           <div style="font-size:9.5px;letter-spacing:0.12em;color:var(--color-neutral-600);margin-top:2px"><span id="g7clock">0000-00-00 00:00:00Z</span> · GUEST OVERRIDE</div>
         </div>
-        <div style="font-size:9px;letter-spacing:0.12em;color:var(--color-accent);border:1px solid var(--color-accent-700);padding:4px 7px;white-space:nowrap">LVL-4</div>
+        <button id="g7annexbtn" type="button" title="Sealed annexes" style="min-height:44px;padding:0 9px;display:flex;align-items:center;gap:5px;font-family:inherit;font-size:9px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:1px solid var(--color-neutral-800);cursor:pointer;white-space:nowrap"><span id="g7annexcount">0/2</span> ANNEX</button>
+        <div id="g7lvl" style="position:relative;overflow:hidden;font-size:9px;letter-spacing:0.12em;color:var(--color-accent);border:1px solid var(--color-accent-700);padding:8px 7px;white-space:nowrap;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none"><span id="g7lvlfill" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:rgba(63,208,230,0.28)"></span><span style="position:relative">LVL-4</span></div>
         <button id="g7audiobtn" type="button" aria-label="Toggle audio" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:13px;color:var(--color-neutral-300);background:transparent;border:1px solid var(--color-neutral-800);cursor:pointer" style-hover="border-color:var(--color-accent);color:var(--color-accent)">♪</button>
       </div>
       <nav id="g7tabs" style="display:flex;gap:0;overflow-x:auto;scrollbar-width:none;border-top:1px solid var(--color-neutral-900);max-width:1120px;margin:0 auto">
@@ -144,12 +145,12 @@
 
     <div style="max-width:1120px;margin:0 auto;padding:14px 14px 28px">
 
-      <!-- ─── PANEL 01 — SUBJECT ─── -->
+      <!-- ─── PANEL 01 · SUBJECT ─── -->
       <div data-panel="1" data-screen-label="01 SUBJECT">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;border-bottom:1px solid var(--color-neutral-800);padding-bottom:10px">
           <div>
             <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent);margin-bottom:5px">SHEET 01 / 04</div>
-            <h2 style="margin:0;font-family:inherit;font-size:17px;font-weight:500;letter-spacing:0.06em;color:var(--color-neutral-100)">PERSONNEL RECORD — "ROOK"</h2>
+            <h2 style="margin:0;font-family:inherit;font-size:17px;font-weight:500;letter-spacing:0.06em;color:var(--color-neutral-100)">PERSONNEL RECORD<span style="display:inline-block;width:16px;height:1px;background:var(--color-accent-700);vertical-align:middle;margin:0 10px"></span>VAUGHN "ROOK"</h2>
           </div>
           <div style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-600);text-align:right;white-space:nowrap">REC-7734<br><span data-noise="hex8">3F91A0C4</span></div>
         </div>
@@ -161,11 +162,11 @@
             <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:10px">IDENTIFICATION</div>
             <div style="display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:start">
               <div style="position:relative;aspect-ratio:3/4;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900)">
-                <image-slot id="rook_portrait" shape="rect" placeholder="DROP SUBJECT PHOTO"></image-slot>
+                <div data-imgslot style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:8px;background:repeating-linear-gradient(45deg,#08192400 0 7px,#0d222f 7px 14px);border:1px dashed var(--color-neutral-700)"><span style="font-size:8px;letter-spacing:0.16em;color:var(--color-neutral-600)">SUBJECT PHOTO</span><span style="font-size:9px;line-height:1.4;color:var(--color-accent-300);word-break:break-all">images/01-rook-portrait.jpg</span></div><img data-img src="images/01-rook-portrait.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
                 <div style="position:absolute;bottom:0;left:0;right:0;padding:3px 5px;font-size:8px;letter-spacing:0.1em;color:var(--color-neutral-400);background:rgba(6,15,26,0.88);pointer-events:none">CAM-04 / ARCHIVE</div>
               </div>
               <div style="display:grid;gap:7px;min-width:0">
-                <div><div style="font-size:9px;letter-spacing:0.16em;color:var(--color-neutral-600)">CALLSIGN</div><div style="font-size:20px;letter-spacing:0.1em;color:var(--color-accent-300)">ROOK</div></div>
+                <div><div style="font-size:9px;letter-spacing:0.16em;color:var(--color-neutral-600)">CALLSIGN</div><div style="font-size:20px;letter-spacing:0.1em;color:var(--color-accent-300)">VAUGHN "ROOK"</div></div>
                 <div><div style="font-size:9px;letter-spacing:0.16em;color:var(--color-neutral-600)">RANK</div><div style="font-size:12px"><span data-redact data-value="MASTER SERGEANT / TIER-1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">████████████████████</span></div></div>
                 <div><div style="font-size:9px;letter-spacing:0.16em;color:var(--color-neutral-600)">STATUS</div><div style="font-size:12px;color:var(--color-neutral-200);display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;background:var(--color-accent);border-radius:50%;animation:g7pulse 1.8s infinite"></span>ACTIVE / DISAVOWABLE</div></div>
               </div>
@@ -175,9 +176,9 @@
 
             <div style="display:grid;gap:0;font-size:11.5px">
               <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">ROLE</span><span style="color:var(--color-neutral-200)">LEAD BREACHER / CQB SPECIALIST</span></div>
-              <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">UNIT</span><span style="color:var(--color-neutral-200)">TASK FORCE G7 — GENERATION TWO</span></div>
-              <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">IDENTITY</span><span><span data-redact data-permanent="1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-alert-dim);box-shadow:0 0 12px rgba(255,122,69,0.16);cursor:not-allowed;user-select:none">██████████████████</span><span data-deny style="display:none;font-size:9px;letter-spacing:0.1em;color:var(--color-alert);margin-top:5px">ACCESS DENIED — DATA EXPUNGED BY ORDER OF HIGH COMMAND</span></span></div>
-              <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">ENLISTED</span><span style="color:var(--color-neutral-200)">[ SEALED ] — 14 YRS SERVICE LOGGED</span></div>
+              <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">UNIT</span><span style="color:var(--color-neutral-200)">TASK FORCE G7 · GENERATION TWO</span></div>
+              <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">IDENTITY</span><span><span data-redact data-permanent="1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-alert-dim);box-shadow:0 0 12px rgba(255,122,69,0.16);cursor:not-allowed;user-select:none">██████████████████</span><span data-deny style="display:none;font-size:9px;letter-spacing:0.1em;color:var(--color-alert);margin-top:5px">ACCESS DENIED · DATA EXPUNGED BY ORDER OF HIGH COMMAND</span></span></div>
+              <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">ENLISTED</span><span style="color:var(--color-neutral-200)">[ SEALED ] · 14 YRS SERVICE LOGGED</span></div>
               <div style="display:grid;grid-template-columns:96px 1fr;gap:8px;padding:7px 0"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600);align-self:center">NEXT OF KIN</span><span style="color:var(--color-neutral-200)">NONE ON RECORD</span></div>
             </div>
             <div style="margin-top:12px;display:flex;align-items:center;gap:8px;border:1px solid var(--color-accent-800);background:rgba(14,61,73,0.3);padding:8px 10px"><span style="display:inline-block;background:#04101a;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);width:34px;height:13px;flex:0 0 auto"></span><span style="font-size:9.5px;letter-spacing:0.12em;color:var(--color-accent-300)">TAP ANY GLOWING BAR TO ATTEMPT DECRYPTION</span></div>
@@ -199,7 +200,7 @@
               <div><div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.12em;color:var(--color-neutral-500)"><span>NON-VERBAL COORDINATION</span><span style="color:var(--color-accent-300)">91</span></div><div style="height:6px;margin-top:4px;background:var(--color-neutral-900);border:1px solid var(--color-neutral-800)"><div style="height:100%;width:91%;background:linear-gradient(90deg,var(--color-accent-800),var(--color-accent))"></div></div></div>
               <div><div style="display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:0.12em;color:var(--color-neutral-500)"><span>VOX TRANSMISSION RATE</span><span style="color:var(--color-neutral-400)">04</span></div><div style="height:6px;margin-top:4px;background:var(--color-neutral-900);border:1px solid var(--color-neutral-800)"><div style="height:100%;width:4%;background:var(--color-neutral-600)"></div></div></div>
             </div>
-            <div style="margin-top:9px;font-size:9.5px;line-height:1.7;color:var(--color-neutral-600)">NOTE: VOX RATE IS THE LOWEST LOGGED FIGURE IN UNIT HISTORY — 0.4 TRANSMISSIONS / OPERATIONAL HOUR. NOT FLAGGED AS A DEFICIENCY.</div>
+            <div style="margin-top:9px;font-size:9.5px;line-height:1.7;color:var(--color-neutral-600)">NOTE: VOX RATE IS THE LOWEST LOGGED FIGURE IN UNIT HISTORY: 0.4 TRANSMISSIONS / OPERATIONAL HOUR. NOT FLAGGED AS A DEFICIENCY.</div>
           </div>
         </div>
 
@@ -234,6 +235,19 @@
           </div>
         </div>
 
+        <div id="g7annexA" style="display:none;margin-top:14px;border:1px solid var(--color-accent);background:linear-gradient(180deg,rgba(19,92,108,0.45),rgba(6,15,26,0.9));padding:14px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline;margin-bottom:9px">
+            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent)">SEALED ANNEX A · UNLOCKED</span>
+            <span style="font-size:9px;letter-spacing:0.12em;color:var(--color-alert)">DEEP DECRYPT · TRIBUNAL BREACH LOGGED</span>
+          </div>
+          <div style="font-size:15px;letter-spacing:0.08em;color:var(--color-accent-300);margin-bottom:8px">VAUGHN ELIAS MARROW</div>
+          <div style="font-family:var(--font-body);font-size:13px;line-height:1.8;color:var(--color-neutral-300);text-wrap:pretty">The surname was struck from every state register in 1998. Marrow, G1-04, was the operative who carried the Arclight charge and did not walk back out of the valley. The boy on the evacuation manifest was seven years old.<br><br>He was not recruited into G7. He came looking for it.</div>
+          <div style="margin-top:11px;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);border:1px solid var(--color-accent-800);padding:4px 7px">CROSS-REF: G1-04 MARROW</span>
+            <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:4px 7px">HIGH COMMAND: UNAWARE</span>
+          </div>
+        </div>
+
         <div style="margin-top:18px;font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">MEDICAL RECORD</div>
         <div style="border:1px solid var(--color-neutral-800);overflow:hidden">
           <div style="display:grid;grid-template-columns:minmax(92px,26%) 1fr;gap:10px;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);background:rgba(13,28,43,0.5)"><span style="font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-600)">TRAUMA</span><span style="font-size:11.5px;line-height:1.7;color:var(--color-neutral-300)">Multiple low-velocity fragmentation scars across torso and limbs from prior engagements.</span></div>
@@ -245,8 +259,8 @@
         <div style="margin-top:18px;font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">LOADOUT SPECIFICATION</div>
         <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start">
           <div style="position:relative;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);aspect-ratio:4/3">
-            <image-slot id="rook_loadout" shape="rect" placeholder="DROP LOADOUT PLATE"></image-slot>
-            <div style="position:absolute;top:6px;left:6px;font-size:8.5px;letter-spacing:0.12em;color:var(--color-accent);pointer-events:none">FIG. 1 — ISSUED KIT</div>
+            <div data-imgslot style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:8px;background:repeating-linear-gradient(45deg,#08192400 0 7px,#0d222f 7px 14px);border:1px dashed var(--color-neutral-700)"><span style="font-size:8px;letter-spacing:0.16em;color:var(--color-neutral-600)">LOADOUT PLATE</span><span style="font-size:9px;line-height:1.4;color:var(--color-accent-300);word-break:break-all">images/02-rook-loadout.jpg</span></div><img data-img src="images/02-rook-loadout.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div style="position:absolute;top:6px;left:6px;font-size:8.5px;letter-spacing:0.12em;color:var(--color-accent);pointer-events:none">FIG. 1 · ISSUED KIT</div>
           </div>
           <div style="display:grid;gap:8px">
             <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">PRIMARY</div><div style="font-size:12px;color:var(--color-neutral-100);margin-bottom:4px">V-AR "CHIMERA"</div><div style="font-size:11px;line-height:1.7;color:var(--color-neutral-400)">.300 Blackout short-barrelled assault rifle. Integrated thermal-holographic sight, heavy-duty heat-wrapped suppressor.</div></div>
@@ -255,7 +269,7 @@
           </div>
         </div>
 
-        <div style="margin-top:18px;font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">ENGAGEMENT LOG — LAST FOUR</div>
+        <div style="margin-top:18px;font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">ENGAGEMENT LOG · LAST FOUR</div>
         <div style="overflow-x:auto;border:1px solid var(--color-neutral-800)">
           <div style="min-width:520px">
             <div style="display:grid;grid-template-columns:100px 1fr 120px 90px;gap:10px;padding:9px 12px;background:rgba(13,28,43,0.8);border-bottom:1px solid var(--color-neutral-800);font-size:9px;letter-spacing:0.14em;color:var(--color-neutral-500)"><span>OP CODE</span><span>SECTOR</span><span>ROLE</span><span style="text-align:right">OUTCOME</span></div>
@@ -266,7 +280,7 @@
           </div>
         </div>
 
-        <div style="margin-top:18px;font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">COMBAT BEHAVIOUR — FIELD NOTES</div>
+        <div style="margin-top:18px;font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">COMBAT BEHAVIOUR · FIELD NOTES</div>
         <div style="display:grid;gap:8px">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;border-left:1px solid var(--color-accent-800);padding:8px 0 8px 11px"><span style="font-size:9px;color:var(--color-neutral-600);white-space:nowrap">LOG 001</span><span style="font-size:11.5px;line-height:1.75;color:var(--color-neutral-300)">Operates as the primary wedge during high-risk structural clearings in hostile urban zones.</span></div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;border-left:1px solid var(--color-accent-800);padding:8px 0 8px 11px"><span style="font-size:9px;color:var(--color-neutral-600);white-space:nowrap">LOG 002</span><span style="font-size:11.5px;line-height:1.75;color:var(--color-neutral-300)">Relies strictly on pre-combat synchronicity and hand signals rather than radio chatter.</span></div>
@@ -275,17 +289,17 @@
         </div>
       </div>
 
-      <!-- ─── PANEL 02 — THEATRE ─── -->
+      <!-- ─── PANEL 02 · THEATRE ─── -->
       <div data-panel="2" data-screen-label="02 THEATRE" style="display:none">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;border-bottom:1px solid var(--color-neutral-800);padding-bottom:10px">
           <div>
             <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent);margin-bottom:5px">SHEET 02 / 04</div>
-            <h2 style="margin:0;font-family:inherit;font-size:17px;font-weight:500;letter-spacing:0.06em;color:var(--color-neutral-100)">THEATRE — URV &amp; NOVA KAELEN</h2>
+            <h2 style="margin:0;font-family:inherit;font-size:17px;font-weight:500;letter-spacing:0.06em;color:var(--color-neutral-100)">THEATRE<span style="display:inline-block;width:16px;height:1px;background:var(--color-accent-700);vertical-align:middle;margin:0 10px"></span>URV &amp; NOVA KAELEN</h2>
           </div>
           <div style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-600);text-align:right;white-space:nowrap">MOD / VIS<br><span data-noise="hex8">C107B4E2</span></div>
         </div>
 
-        <div style="font-size:10px;line-height:1.9;letter-spacing:0.08em;color:var(--color-neutral-500);margin-bottom:14px">MINISTRY OF DEFENSE // VESPERIAN INTELLIGENCE SERVICES<br>&gt; CLASSIFIED DOSSIER — EYES ONLY<br>&gt; SUBJECT: STRATEGIC OVERVIEW &amp; UNIT LINEAGE — TASK FORCE G7</div>
+        <div style="font-size:10px;line-height:1.9;letter-spacing:0.08em;color:var(--color-neutral-500);margin-bottom:14px">MINISTRY OF DEFENSE // VESPERIAN INTELLIGENCE SERVICES<br>&gt; CLASSIFIED DOSSIER · EYES ONLY<br>&gt; SUBJECT: STRATEGIC OVERVIEW &amp; UNIT LINEAGE: TASK FORCE G7</div>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:16px">
           <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.12em;color:var(--color-neutral-600)">POPULATION</div><div style="font-size:17px;color:var(--color-neutral-100);margin-top:3px">84.2M</div></div>
@@ -296,7 +310,7 @@
 
         <!-- ── TACTICAL MAP ── -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px">
-          <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500)">OPERATIONAL MAP — NOVA KAELEN</span>
+          <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500)">OPERATIONAL MAP · NOVA KAELEN</span>
           <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-600)">TAP A DISTRICT · DRAG TO PAN</span>
         </div>
         <div style="position:relative;border:1px solid var(--color-neutral-800);background:linear-gradient(180deg,rgba(11,45,71,0.55),rgba(6,15,26,0.9));padding:8px">
@@ -308,7 +322,7 @@
                 <clipPath id="g7land"><path d="M148 128 C260 84,420 60,560 78 C700 96,796 134,858 216 C918 296,910 424,886 542 C868 628,758 670,618 670 C468 670,354 650,266 574 C174 494,126 380,130 268 C132 204,138 160,148 128 Z"></path></clipPath>
                 <pattern id="g7water" width="38" height="18" patternUnits="userSpaceOnUse"><path d="M0 9 q9.5 -6 19 0 q9.5 6 19 0" fill="none" stroke="#10394b" stroke-width="1"></path></pattern>
                 <pattern id="g7cliff" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(60)"><line x1="0" y1="0" x2="0" y2="10" stroke="#24404f" stroke-width="1.6"></line></pattern>
-                <pattern id="g7built" width="18" height="16" patternUnits="userSpaceOnUse"><rect x="1.5" y="1.5" width="7" height="5" fill="#0d2a37"></rect><rect x="10.5" y="2.5" width="5" height="4" fill="#0d2a37"></rect><rect x="2.5" y="9.5" width="5" height="4.5" fill="#0d2a37"></rect><rect x="9.5" y="9" width="6.5" height="5" fill="#0d2a37"></rect></pattern>
+                <pattern id="g7built" width="18" height="16" patternUnits="userSpaceOnUse"><rect x="1.5" y="1.5" width="7" height="5" fill="#14384a"></rect><rect x="10.5" y="2.5" width="5" height="4" fill="#14384a"></rect><rect x="2.5" y="9.5" width="5" height="4.5" fill="#14384a"></rect><rect x="9.5" y="9" width="6.5" height="5" fill="#14384a"></rect></pattern>
                 <pattern id="g7cqb" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#ff7a45" stroke-width="1.3" opacity="0.5"></line></pattern>
                 <radialGradient id="g7glow" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#123244" stop-opacity="0.85"></stop><stop offset="100%" stop-color="#061019" stop-opacity="0"></stop></radialGradient>
               </defs>
@@ -323,10 +337,13 @@
                 <rect x="120" y="40" width="820" height="660" fill="url(#g7built)" opacity="0.75"></rect>
                 <path d="M196 470 C250 430,320 436,352 486 C384 536,330 578,268 566 C208 554,168 512,196 470 Z" fill="#0b2b28" stroke="#1f5a4e" stroke-width="1"></path>
                 <path d="M596 148 C644 126,700 140,708 178 C716 216,668 240,626 228 C586 216,566 168,596 148 Z" fill="#0b2b28" stroke="#1f5a4e" stroke-width="1"></path>
-                <g stroke="#123a4b" stroke-width="1" fill="none" opacity="0.9"><g transform="rotate(-4 580 195)"><path d="M468 120 L468 270 M492 120 L492 270 M526 120 L526 270 M558 120 L558 270 M590 120 L590 270 M619 120 L619 270 M649 120 L649 270 M679 120 L679 270 M452 134 L708 134 M452 159 L708 159 M452 182 L708 182 M452 210 L708 210 M452 240 L708 240 M452 264 L708 264 "></path></g><g transform="rotate(2 510 329)"><path d="M316 286 L316 372 M347 286 L347 372 M381 286 L381 372 M413 286 L413 372 M443 286 L443 372 M475 286 L475 372 M511 286 L511 372 M545 286 L545 372 M576 286 L576 372 M606 286 L606 372 M632 286 L632 372 M659 286 L659 372 M697 286 L697 372 M300 300 L720 300 M300 321 L720 321 M300 349 L720 349 M300 370 L720 370 "></path></g><g transform="rotate(-2 372 500)"><path d="M204 392 L204 608 M229 392 L229 608 M257 392 L257 608 M285 392 L285 608 M313 392 L313 608 M350 392 L350 608 M381 392 L381 608 M407 392 L407 608 M439 392 L439 608 M476 392 L476 608 M507 392 L507 608 M535 392 L535 608 M188 406 L556 406 M188 428 L556 428 M188 458 L556 458 M188 481 L556 481 M188 504 L556 504 M188 531 L556 531 M188 555 L556 555 M188 578 L556 578 M188 606 L556 606 "></path></g><g transform="rotate(6 220 258)"><path d="M166 176 L166 340 M190 176 L190 340 M217 176 L217 340 M245 176 L245 340 M282 176 L282 340 M150 190 L290 190 M150 213 L290 213 M150 235 L290 235 M150 263 L290 263 M150 285 L290 285 M150 312 L290 312 M150 332 L290 332 "></path></g><g transform="rotate(3 752 484)"><path d="M648 392 L648 576 M677 392 L677 576 M705 392 L705 576 M741 392 L741 576 M771 392 L771 576 M802 392 L802 576 M832 392 L832 576 M864 392 L864 576 M632 406 L872 406 M632 435 L872 435 M632 458 L872 458 M632 487 L872 487 M632 511 L872 511 M632 538 L872 538 M632 569 L872 569 "></path></g><g transform="rotate(-3 545 586)"><path d="M486 540 L486 632 M513 540 L513 632 M544 540 L544 632 M573 540 L573 632 M611 540 L611 632 M470 554 L620 554 M470 575 L620 575 M470 603 L620 603 M470 630 L620 630 "></path></g><g transform="rotate(8 808 151)"><path d="M736 96 L736 206 M762 96 L762 206 M797 96 L797 206 M831 96 L831 206 M869 96 L869 206 M720 110 L896 110 M720 134 L896 134 M720 159 L896 159 M720 180 L896 180 "></path></g></g>
+                <g stroke="#1a5266" stroke-width="1" fill="none" opacity="0.95"><g transform="rotate(-4 580 195)"><path d="M462 120 L458.9 270 M478 120 L475.7 270 M492 120 L487.6 270 M509 120 L507.8 270 M526 120 L524 270 M543 120 L539.7 270 M563 120 L560.9 270 M578 120 L577.4 270 M596 120 L592.5 270 M614 120 L610.7 270 M632 120 L628.9 270 M651 120 L647.1 270 M670 120 L667.4 270 M689 120 L686.4 270 M707 120 L706.3 270 M452 129 L708 125.4 M452 148 L708 145.7 M452 166 L708 162.4 M452 182 L708 179 M452 200 L708 198.3 M452 214 L708 211.9 M452 228 L708 224.7 M452 245 L708 241.9 M452 261 L708 260.2 "></path></g><g transform="rotate(2 510 329)"><path d="M310 286 L308.3 372 M329 286 L333.8 372 M347 286 L350.1 372 M364 286 L362.9 372 M381 286 L378.9 372 M400 286 L400.7 372 M417 286 L414.9 372 M432 286 L434.2 372 M449 286 L451.8 372 M464 286 L467.8 372 M483 286 L482.3 372 M500 286 L501.7 372 M518 286 L517 372 M537 286 L540.6 372 M553 286 L551 372 M569 286 L567.5 372 M588 286 L586.4 372 M607 286 L603.4 372 M625 286 L625.7 372 M640 286 L644.1 372 M659 286 L662.4 372 M674 286 L675.1 372 M692 286 L692.3 372 M709 286 L712.3 372 M300 295 L720 291.1 M300 310 L720 313.7 M300 329 L720 331.1 M300 346 L720 346.5 M300 362 L720 363.9 "></path></g><g transform="rotate(-2 372 500)"><path d="M198 392 L199.5 608 M214 392 L213.9 608 M232 392 L227.7 608 M251 392 L246.1 608 M265 392 L266.2 608 M283 392 L283.7 608 M300 392 L304.9 608 M316 392 L318.7 608 M336 392 L336.1 608 M355 392 L355.9 608 M370 392 L369.5 608 M385 392 L383.3 608 M403 392 L399 608 M422 392 L425.4 608 M440 392 L443.4 608 M459 392 L455.5 608 M477 392 L475 608 M492 392 L492.4 608 M509 392 L505.3 608 M526 392 L527.8 608 M541 392 L546 608 M188 401 L556 404.4 M188 415 L556 418.9 M188 432 L556 432.7 M188 447 L556 449.3 M188 464 L556 465.3 M188 480 L556 480 M188 496 L556 498.5 M188 514 L556 510.6 M188 528 L556 528 M188 546 L556 544.8 M188 561 L556 562.4 M188 579 L556 577.7 M188 596 L556 594.2 "></path></g><g transform="rotate(6 220 258)"><path d="M160 176 L162.7 340 M174 176 L172.2 340 M193 176 L191.5 340 M212 176 L214.4 340 M231 176 L232.3 340 M247 176 L248.7 340 M262 176 L260.2 340 M280 176 L275.6 340 M150 185 L290 187.5 M150 201 L290 204.8 M150 217 L290 214.6 M150 234 L290 232.1 M150 248 L290 246.1 M150 264 L290 268 M150 279 L290 279.4 M150 296 L290 294.9 M150 313 L290 314.8 M150 328 L290 329.3 "></path></g><g transform="rotate(3 752 484)"><path d="M642 392 L641.8 576 M660 392 L656.3 576 M675 392 L676.8 576 M693 392 L689.6 576 M710 392 L714.5 576 M726 392 L722.4 576 M741 392 L744 576 M758 392 L761.3 576 M776 392 L775 576 M791 392 L786.3 576 M810 392 L812.4 576 M826 392 L828.2 576 M842 392 L841.1 576 M859 392 L858.3 576 M632 401 L872 399.7 M632 416 L872 414.3 M632 434 L872 436.7 M632 452 L872 452.8 M632 466 L872 465.7 M632 480 L872 479 M632 498 L872 498 M632 515 L872 516.1 M632 533 L872 536.9 M632 550 L872 546.1 M632 565 L872 561.4 "></path></g><g transform="rotate(-3 545 586)"><path d="M480 540 L476.1 632 M498 540 L497.5 632 M514 540 L514.2 632 M530 540 L530.6 632 M544 540 L547.3 632 M558 540 L556.2 632 M573 540 L570.1 632 M587 540 L591.6 632 M601 540 L604.8 632 M470 549 L620 548.6 M470 563 L620 560.1 M470 580 L620 583.8 M470 595 L620 596.5 M470 609 L620 606.5 M470 624 L620 625.9 "></path></g><g transform="rotate(8 808 151)"><path d="M730 96 L734.5 206 M747 96 L749.9 206 M763 96 L765.2 206 M782 96 L785.3 206 M798 96 L796.5 206 M816 96 L814.1 206 M836 96 L831.5 206 M854 96 L857.3 206 M874 96 L874.5 206 M892 96 L893.6 206 M720 105 L896 104.6 M720 120 L896 116.7 M720 136 L896 137.3 M720 149 L896 151.2 M720 165 L896 168.5 M720 180 L896 179 M720 198 L896 197.1 "></path></g><g transform="rotate(3 375 230)"><path d="M310 180 L313.8 280 M328 180 L325.9 280 M345 180 L349.5 280 M363 180 L358.2 280 M379 180 L376.2 280 M394 180 L397.9 280 M408 180 L409.1 280 M427 180 L428.1 280 M443 180 L445.9 280 M300 189 L450 190.6 M300 206 L450 209.8 M300 224 L450 225.2 M300 240 L450 243.9 M300 255 L450 256 M300 269 L450 267.6 "></path></g><g transform="rotate(-2 640 329)"><path d="M570 286 L571.1 372 M589 286 L586.6 372 M604 286 L603.5 372 M620 286 L620.2 372 M638 286 L638.6 372 M657 286 L657.8 372 M672 286 L672.3 372 M688 286 L689 372 M706 286 L707.8 372 M560 295 L720 297.5 M560 310 L720 307.1 M560 327 L720 328.5 M560 342 L720 341.5 M560 356 L720 356.5 "></path></g></g>
                 <g stroke="#1b556c" stroke-width="2.2" fill="none" opacity="0.95"><path d="M105.3 40 C109.2 58.3,125.7 113.3,128.7 150 C131.8 186.7,123 223.3,123.8 260 C124.7 296.7,135.9 333.3,133.9 370 C132 406.7,113.5 443.3,112.3 480 C111.2 516.7,124.5 553.3,126.9 590 C129.3 626.7,126.5 681.7,126.5 700"></path><path d="M60 156.9 C80 151.5,140 121.2,180 124.1 C220 127,260 166.1,300 174.2 C340 182.4,380 181.3,420 172.8 C460 164.3,500 129,540 123.3 C580 117.5,620 138.7,660 138.3 C700 137.9,740 117,780 120.9 C820 124.8,880 154.7,900 161.5"></path><path d="M281.1 40 C285.4 58.3,307.8 113.3,306.6 150 C305.4 186.7,273.8 223.3,273.8 260 C273.9 296.7,303 333.3,306.9 370 C310.8 406.7,305.3 443.3,297.3 480 C289.2 516.7,263.8 553.3,258.9 590 C253.9 626.7,266 681.7,267.4 700"></path><path d="M60 251.3 C80 249.7,140 237.4,180 241.7 C220 246,260 279.2,300 277.3 C340 275.4,380 237.7,420 230.4 C460 223.1,500 235.1,540 233.5 C580 231.9,620 217.2,660 220.8 C700 224.3,740 250,780 254.6 C820 259.2,880 249.3,900 248.3"></path><path d="M444.2 40 C441 58.3,424.5 113.3,425.2 150 C425.9 186.7,450 223.3,448.2 260 C446.3 296.7,420.3 333.3,414 370 C407.7 406.7,405.6 443.3,410.4 480 C415.1 516.7,441.1 553.3,442.5 590 C443.8 626.7,422.4 681.7,418.3 700"></path><path d="M60 348.6 C80 354.7,140 383.6,180 384.9 C220 386.1,260 364.2,300 356.2 C340 348.1,380 340.4,420 336.6 C460 332.8,500 329.8,540 333.7 C580 337.6,620 354.4,660 359.9 C700 365.4,740 367.3,780 366.7 C820 366.1,880 358,900 356.3"></path><path d="M563.7 40 C570.7 58.3,600.7 113.3,605.5 150 C610.3 186.7,599.9 223.3,592.5 260 C585.1 296.7,562.3 333.3,560.9 370 C559.5 406.7,573.8 443.3,583.9 480 C594 516.7,616.6 553.3,621.5 590 C626.4 626.7,614.5 681.7,613.1 700"></path><path d="M60 505.1 C80 501.2,140 482.7,180 482.1 C220 481.6,260 498.4,300 501.8 C340 505.3,380 502.5,420 502.7 C460 503,500 507.4,540 503.3 C580 499.1,620 481.5,660 477.7 C700 473.9,740 478.1,780 480.6 C820 483,880 490.4,900 492.4"></path><path d="M727 40 C721.4 58.3,695.9 113.3,693.2 150 C690.5 186.7,713 223.3,710.9 260 C708.8 296.7,682.7 333.3,680.8 370 C679 406.7,696.8 443.3,699.8 480 C702.7 516.7,691.1 553.3,698.4 590 C705.7 626.7,736.2 681.7,743.7 700"></path><path d="M60 616.1 C80 614.9,140 614.7,180 609.1 C220 603.5,260 579.8,300 582.5 C340 585.3,380 620.6,420 625.5 C460 630.4,500 621,540 611.9 C580 602.7,620 574.6,660 570.8 C700 567.1,740 579.6,780 589.3 C820 598.9,880 622.3,900 628.8"></path><path d="M864.6 40 C865.9 58.3,868.5 113.3,872.2 150 C875.9 186.7,884.8 223.3,886.7 260 C888.7 296.7,889.3 333.3,883.8 370 C878.3 406.7,849.7 443.3,854 480 C858.4 516.7,906.8 553.3,909.8 590 C912.9 626.7,878.6 681.7,872.4 700"></path></g>
-                <path d="M764.7 366 C755.1 384.1,730.2 445.6,707 474.7 C683.9 503.9,660.2 525.1,625.7 540.7 C591.2 556.4,543.1 570.9,500 568.8 C456.9 566.6,399.6 546.9,366.9 528 C334.2 509,320.5 482.1,304 455.1 C287.5 428.1,268.2 397.3,268 366 C267.8 334.7,284.7 294.5,302.8 267.3 C320.9 240.2,343.8 221.9,376.7 203.1 C409.6 184.4,456.8 155.2,500 155 C543.2 154.9,597.8 181.8,635.9 202.4 C674.1 223,707.7 251.2,729.1 278.5 C750.6 305.8,768.4 333.3,764.7 366 C761 398.7,716.6 456.6,707 474.7 Z" fill="none" stroke="#2f7f99" stroke-width="4.5" opacity="0.9"></path>
-                <path d="M764.7 366 C755.1 384.1,730.2 445.6,707 474.7 C683.9 503.9,660.2 525.1,625.7 540.7 C591.2 556.4,543.1 570.9,500 568.8 C456.9 566.6,399.6 546.9,366.9 528 C334.2 509,320.5 482.1,304 455.1 C287.5 428.1,268.2 397.3,268 366 C267.8 334.7,284.7 294.5,302.8 267.3 C320.9 240.2,343.8 221.9,376.7 203.1 C409.6 184.4,456.8 155.2,500 155 C543.2 154.9,597.8 181.8,635.9 202.4 C674.1 223,707.7 251.2,729.1 278.5 C750.6 305.8,768.4 333.3,764.7 366 C761 398.7,716.6 456.6,707 474.7 Z" fill="none" stroke="#0a2634" stroke-width="1" stroke-dasharray="8 10"></path>
+                <path d="M262 262 C312 198,404 166,500 168 C566 170,624 190,668 222" fill="none" stroke="#2f7f99" stroke-width="4.5" opacity="0.9"></path><path d="M262 262 C312 198,404 166,500 168 C566 170,624 190,668 222" fill="none" stroke="#0a2634" stroke-width="1" stroke-dasharray="9 11"></path>
+                <path d="M668 222 C724 262,748 316,744 386 C742 434,728 476,708 512" fill="none" stroke="#2f7f99" stroke-width="4.5" opacity="0.9"></path><path d="M668 222 C724 262,748 316,744 386 C742 434,728 476,708 512" fill="none" stroke="#0a2634" stroke-width="1" stroke-dasharray="9 11"></path>
+                <path d="M708 512 C650 574,548 606,448 596 C388 590,336 570,300 540" fill="none" stroke="#2f7f99" stroke-width="4.5" opacity="0.9"></path><path d="M708 512 C650 574,548 606,448 596 C388 590,336 570,300 540" fill="none" stroke="#0a2634" stroke-width="1" stroke-dasharray="9 11"></path>
+                <path d="M300 540 C246 494,224 424,232 352 C236 314,246 284,262 262" fill="none" stroke="#2f7f99" stroke-width="4.5" opacity="0.9"></path><path d="M300 540 C246 494,224 424,232 352 C236 314,246 284,262 262" fill="none" stroke="#0a2634" stroke-width="1" stroke-dasharray="9 11"></path>
+                <circle cx="262" cy="262" r="5" fill="#04121b" stroke="#2f7f99" stroke-width="2"></circle><circle cx="668" cy="222" r="5" fill="#04121b" stroke="#2f7f99" stroke-width="2"></circle><circle cx="708" cy="512" r="5" fill="#04121b" stroke="#2f7f99" stroke-width="2"></circle><circle cx="300" cy="540" r="5" fill="#04121b" stroke="#2f7f99" stroke-width="2"></circle>
                 <path d="M226 330 C300 400,410 486,520 528 C620 566,720 520,806 462" fill="none" stroke="#ff7a45" stroke-width="2" stroke-dasharray="12 8" opacity="0.9" style="animation:g7dash 1.8s linear infinite"></path>
                 <path d="M600 380 L600 596 L880 596" fill="none" stroke="#3fd0e6" stroke-width="1.6" stroke-dasharray="6 6" opacity="0.75"></path>
                 <rect x="648" y="440" width="208" height="60" fill="url(#g7cqb)" opacity="0.45"></rect>
@@ -337,13 +354,13 @@
               <path d="M690 24 C748 96,812 152,900 196 C944 218,978 236,1000 246" fill="none" stroke="#3fd0e6" stroke-width="1.2" opacity="0.5" stroke-dasharray="11 9"></path>
               <g transform="rotate(38 806 146)"><rect x="782" y="132" width="48" height="28" fill="#0b2c3a" stroke="#3fd0e6" stroke-width="1.6"></rect><path d="M782 146 L830 146" stroke="#3fd0e6" stroke-width="2"></path></g>
 
-              <g clip-path="url(#g7land)" opacity="0.5">
-                <path d="M452 120 h256 v150 h-256 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
-                <path d="M300 286 h420 v86 h-420 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
-                <path d="M188 392 h368 v216 h-368 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
-                <path d="M150 176 h140 v164 h-140 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
-                <path d="M632 392 h240 v184 h-240 Z" fill="none" stroke="#ff7a45" stroke-width="1.2" stroke-dasharray="5 5"></path>
-                <path d="M470 540 h150 v92 h-150 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
+              <g clip-path="url(#g7land)" opacity="0.55">
+                <path d="M456 128 C520 112,626 118,706 138 C716 196,700 246,668 268 C592 278,506 272,458 254 C446 210,446 164,456 128 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
+                <path d="M304 300 C400 282,548 278,716 292 C722 320,714 350,700 370 C544 380,404 378,306 364 C298 344,298 318,304 300 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
+                <path d="M196 402 C286 386,428 388,552 404 C562 470,556 552,538 604 C424 616,306 610,220 588 C196 522,188 456,196 402 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
+                <path d="M154 190 C202 176,258 176,288 188 C296 232,292 300,282 336 C238 346,188 342,158 330 C148 288,146 226,154 190 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
+                <path d="M638 402 C712 388,808 392,866 408 C874 460,868 526,852 570 C778 582,700 578,646 562 C634 512,630 448,638 402 Z" fill="none" stroke="#ff7a45" stroke-width="1.3" stroke-dasharray="5 5"></path>
+                <path d="M476 548 C520 538,580 540,614 552 C620 578,616 610,606 630 C560 638,510 634,480 622 C472 600,470 570,476 548 Z" fill="none" stroke="#3fd0e6" stroke-width="1" stroke-dasharray="5 5"></path>
               </g>
 
               <g data-sector="apex" style="cursor:pointer"><circle cx="560" cy="180" r="15" fill="#04121b" stroke="#3fd0e6" stroke-width="2"></circle><text x="560" y="185" text-anchor="middle" fill="#92e9f6" font-family="'IBM Plex Mono',monospace" font-size="12">01</text></g>
@@ -355,10 +372,10 @@
               <g data-sector="archive" style="cursor:pointer"><circle cx="544" cy="562" r="15" fill="#04121b" stroke="#3fd0e6" stroke-width="2"></circle><text x="544" y="567" text-anchor="middle" fill="#92e9f6" font-family="'IBM Plex Mono',monospace" font-size="12">07</text></g>
               <g data-sector="power" style="cursor:pointer"><circle cx="858" cy="330" r="15" fill="#1a0d07" stroke="#ff7a45" stroke-width="2"></circle><text x="858" y="335" text-anchor="middle" fill="#ff9d75" font-family="'IBM Plex Mono',monospace" font-size="12">08</text></g>
 
-              <g data-sector="ow1" style="cursor:pointer"><circle cx="516" cy="234" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M516 228 L521 238 L511 238 z" fill="#3fd0e6"></path></g>
-              <g data-sector="ow2" style="cursor:pointer"><circle cx="690" cy="292" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M690 286 L695 296 L685 296 z" fill="#3fd0e6"></path></g>
-              <g data-sector="ow3" style="cursor:pointer"><circle cx="638" cy="412" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M638 406 L643 416 L633 416 z" fill="#3fd0e6"></path></g>
-              <g data-sector="ow4" style="cursor:pointer"><circle cx="248" cy="398" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M248 392 L253 402 L243 402 z" fill="#3fd0e6"></path></g>
+              <g data-sector="ow1" style="cursor:pointer"><circle data-owring cx="516" cy="234" r="17" fill="none" stroke="#3fd0e6" stroke-width="2" opacity="0"></circle><circle cx="516" cy="234" r="22" fill="transparent"></circle><text x="531" y="249" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="10">1</text><circle cx="516" cy="234" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M516 228 L521 238 L511 238 z" fill="#3fd0e6"></path></g>
+              <g data-sector="ow2" style="cursor:pointer"><circle data-owring cx="690" cy="292" r="17" fill="none" stroke="#3fd0e6" stroke-width="2" opacity="0"></circle><circle cx="690" cy="292" r="22" fill="transparent"></circle><text x="705" y="307" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="10">2</text><circle cx="690" cy="292" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M690 286 L695 296 L685 296 z" fill="#3fd0e6"></path></g>
+              <g data-sector="ow3" style="cursor:pointer"><circle data-owring cx="638" cy="412" r="17" fill="none" stroke="#3fd0e6" stroke-width="2" opacity="0"></circle><circle cx="638" cy="412" r="22" fill="transparent"></circle><text x="653" y="427" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="10">3</text><circle cx="638" cy="412" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M638 406 L643 416 L633 416 z" fill="#3fd0e6"></path></g>
+              <g data-sector="ow4" style="cursor:pointer"><circle data-owring cx="248" cy="398" r="17" fill="none" stroke="#3fd0e6" stroke-width="2" opacity="0"></circle><circle cx="248" cy="398" r="22" fill="transparent"></circle><text x="263" y="413" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="10">4</text><circle cx="248" cy="398" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M248 392 L253 402 L243 402 z" fill="#3fd0e6"></path></g>
               <g data-sector="anvil" style="cursor:pointer"><circle cx="398" cy="520" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M398 513 L398 527 M391 520 L405 520" stroke="#3fd0e6" stroke-width="1.6"></path></g>
               <g data-sector="trace" style="cursor:pointer"><circle cx="702" cy="542" r="11" fill="#04121b" stroke="#3fd0e6" stroke-width="1.6"></circle><path d="M702 535 L702 549 M695 542 L709 542" stroke="#3fd0e6" stroke-width="1.6"></path></g>
               <g data-sector="sci1" style="cursor:pointer"><circle cx="802" cy="428" r="11" fill="#1a0d07" stroke="#ff7a45" stroke-width="1.6"></circle><path d="M797 423 L807 433 M807 423 L797 433" stroke="#ff7a45" stroke-width="2"></path></g>
@@ -374,7 +391,7 @@
 
               <g><path d="M44 60 L164 60 M44 54 L44 66 M104 54 L104 66 M164 54 L164 66" stroke="#5c869e" stroke-width="1"></path><text x="172" y="65" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="9">2 KM</text><path d="M44 96 L44 136 M44 96 L56 136 M56 136 L56 96" fill="none" stroke="#5c869e" stroke-width="1.4"></path><text x="36" y="152" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="9">N</text></g>
 
-              <g><rect x="24" y="596" width="352" height="60" fill="#04101a" stroke="#3fd0e6" stroke-width="1"></rect><text x="38" y="620" fill="#3fd0e6" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="2">NOVA KAELEN — SHADOW-WAR ZONE</text><text x="38" y="638" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="1.4">OPERATIONAL MAP · TASK FORCE G7 · SURVEY REV 11</text><text x="38" y="650" fill="#416476" font-family="'IBM Plex Mono',monospace" font-size="8" letter-spacing="1.4">GRID REF 44.19N / 12.07E · CLASSIFIED — G7 ASSET</text></g>
+              <g><rect x="24" y="596" width="352" height="60" fill="#04101a" stroke="#3fd0e6" stroke-width="1"></rect><text x="38" y="620" fill="#3fd0e6" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="2">NOVA KAELEN · SHADOW-WAR ZONE</text><text x="38" y="638" fill="#5c869e" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="1.4">OPERATIONAL MAP · TASK FORCE G7 · SURVEY REV 11</text><text x="38" y="650" fill="#416476" font-family="'IBM Plex Mono',monospace" font-size="8" letter-spacing="1.4">GRID REF 44.19N / 12.07E · CLASSIFIED · G7 ASSET</text></g>
             </svg>
           </div>
         </div>
@@ -395,7 +412,7 @@
           <div style="border:1px solid var(--color-neutral-800);padding:12px">
             <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:9px">OVERLAY LEGEND</div>
             <div style="display:grid;gap:7px;font-size:10px;color:var(--color-neutral-400)">
-              <div style="display:flex;align-items:center;gap:9px"><span style="width:16px;text-align:center;color:var(--color-accent);border:1px solid var(--color-accent);border-radius:50%;font-size:8px;flex:0 0 auto">0</span>NUMBERED PIN — DISTRICT (SEE INDEX)</div>
+              <div style="display:flex;align-items:center;gap:9px"><span style="width:16px;text-align:center;color:var(--color-accent);border:1px solid var(--color-accent);border-radius:50%;font-size:8px;flex:0 0 auto">0</span>NUMBERED PIN · DISTRICT (SEE INDEX)</div>
               <div style="display:flex;align-items:center;gap:9px"><span style="width:16px;height:3px;background:#2f7f99;flex:0 0 auto"></span>RING ROAD / ARTERIAL NETWORK</div>
               <div style="display:flex;align-items:center;gap:9px"><span style="width:16px;height:10px;background:rgba(168,75,40,0.4);border:1px solid var(--color-alert-dim);flex:0 0 auto"></span>SCI-HELD DISTRICT / CQB ZONE</div>
               <div style="display:flex;align-items:center;gap:9px"><span style="width:16px;height:10px;background:#0b2b28;border:1px solid #1f5a4e;flex:0 0 auto"></span>GREEN SPACE / RECLAIMED LOT</div>
@@ -415,28 +432,28 @@
           <div data-sectorrow="apex" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">01</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-01 THE APEX</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">MEGA-CORP HQ / GLITCH HACKING TARGET</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:86%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">SECURE</span></div>
           <div data-sectorrow="vein" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">02</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-02 "THE VEIN"</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">KAELEN RIVER SUSPENSION BRIDGE</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:74%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">CHOKEPOINT</span></div>
           <div data-sectorrow="midway" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">03</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-03 THE MIDWAY</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">GRIDLOCK FRICTION POINT</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:52%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">CONTESTED</span></div>
-          <div data-sectorrow="sprawl" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">04</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-04 THE SPRAWL</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">"THE HIVE" — CIVILIAN RESISTANCE POCKET</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:38%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">VOLATILE</span></div>
+          <div data-sectorrow="sprawl" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">04</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-04 THE SPRAWL</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">"THE HIVE" · CIVILIAN RESISTANCE POCKET</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:38%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">VOLATILE</span></div>
           <div data-sectorrow="docks" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">05</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-05 INDUSTRIAL DOCKS</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">SMUGGLING DROP ZONE DELTA</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:63%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">MONITORED</span></div>
           <div data-sectorrow="rust" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-alert-dim);font-size:9px;color:var(--color-alert)">06</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-06 "RUST-BOWL" TENEMENTS</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">SCI STRONGHOLD / CQB LANES</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:11%;background:var(--color-alert-dim)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-alert);text-align:right">HOSTILE</span></div>
-          <div data-sectorrow="archive" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">07</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-07 MUNICIPAL ARCHIVE</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">SUB-STATION 4 — OBJECTIVE</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:69%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">OBJECTIVE</span></div>
-          <div data-sectorrow="power" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-alert-dim);font-size:9px;color:var(--color-alert)">08</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-08 POWER NODE 4</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">GRID FEED — SCI SABOTAGE VECTOR</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:44%;background:var(--color-alert-dim)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-alert);text-align:right">CONTESTED</span></div>
+          <div data-sectorrow="archive" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--color-neutral-900);cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-accent-700);font-size:9px;color:var(--color-accent-300)">07</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-07 MUNICIPAL ARCHIVE</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">SUB-STATION 4 · OBJECTIVE</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:69%;background:var(--color-accent-600)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);text-align:right">OBJECTIVE</span></div>
+          <div data-sectorrow="power" style="display:grid;grid-template-columns:26px 1fr 96px;gap:10px;align-items:center;padding:11px 12px;cursor:pointer"><span style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid var(--color-alert-dim);font-size:9px;color:var(--color-alert)">08</span><div><div style="font-size:11px;color:var(--color-neutral-200)">DST-08 POWER NODE 4</div><div style="font-size:9px;color:var(--color-neutral-600);margin-top:2px">GRID FEED · SCI SABOTAGE VECTOR</div><div style="height:4px;margin-top:5px;background:var(--color-neutral-900)"><div style="height:100%;width:44%;background:var(--color-alert-dim)"></div></div></div><span style="font-size:9px;letter-spacing:0.1em;color:var(--color-alert);text-align:right">CONTESTED</span></div>
         </div>
 
         <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start;margin-top:18px">
           <div style="border:1px solid var(--color-neutral-800);padding:14px;background:linear-gradient(180deg,rgba(13,28,43,0.85),rgba(6,15,26,0.85))">
             <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent);margin-bottom:8px">NATION STATE PROFILE</div>
-            <div style="font-family:var(--font-body);font-size:13.5px;line-height:1.75;color:var(--color-neutral-300);text-wrap:pretty">The United Republic of Vesperia (URV) functions as a highly strategic, rapidly expanding economic power, maintaining critical oversight of global shipping lanes and high-capacity deep-water ports. Geographically the nation is defined by severe topographical and socioeconomic contrast — hyper-wealthy automated urban hubs walled off from dense, rugged mountain ranges and primordial frontier forests.</div>
+            <div style="font-family:var(--font-body);font-size:13.5px;line-height:1.75;color:var(--color-neutral-300);text-wrap:pretty">The United Republic of Vesperia (URV) functions as a highly strategic, rapidly expanding economic power, maintaining critical oversight of global shipping lanes and high-capacity deep-water ports. Geographically the nation is defined by severe topographical and socioeconomic contrast: hyper-wealthy automated urban hubs walled off from dense, rugged mountain ranges and primordial frontier forests.</div>
           </div>
           <div style="border:1px solid var(--color-neutral-800);padding:14px;background:linear-gradient(180deg,rgba(13,28,43,0.85),rgba(6,15,26,0.85))">
-            <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent);margin-bottom:8px">CAPITAL METROPOLIS — NOVA KAELEN</div>
+            <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent);margin-bottom:8px">CAPITAL METROPOLIS · NOVA KAELEN</div>
             <div style="font-family:var(--font-body);font-size:13.5px;line-height:1.75;color:var(--color-neutral-300);text-wrap:pretty">Nova Kaelen operates as the sprawling national epicentre. Vertical neon-and-glass corporate towers loom directly over decaying brutalist concrete sectors. The metropolis remains a permanent crucible of high-end industrial espionage, syndicate-run corruption and violent underground dissent.</div>
           </div>
         </div>
 
         <div style="margin-top:18px;position:relative;border:1px solid var(--color-alert-dim);padding:14px;background:rgba(168,75,40,0.1)">
           <div style="position:absolute;top:-1px;right:-1px;width:16px;height:16px;border-top:1px solid var(--color-alert);border-right:1px solid var(--color-alert)"></div>
-          <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-alert);margin-bottom:8px">ACTIVE THREAT MATRIX — THE 2020s CRISIS</div>
-          <div style="font-family:var(--font-body);font-size:13.5px;line-height:1.75;color:var(--color-neutral-300);text-wrap:pretty">Vesperia is embroiled in an unacknowledged asymmetric shadow war against the <strong style="color:var(--color-alert);font-weight:500">Shattered Crown Initiative (SCI)</strong> — a heavily capitalized ultra-nationalist separatist insurgent faction.</div>
+          <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-alert);margin-bottom:8px">ACTIVE THREAT MATRIX · THE 2020s CRISIS</div>
+          <div style="font-family:var(--font-body);font-size:13.5px;line-height:1.75;color:var(--color-neutral-300);text-wrap:pretty">Vesperia is embroiled in an unacknowledged asymmetric shadow war against the <strong style="color:var(--color-alert);font-weight:500">Shattered Crown Initiative (SCI)</strong>, a heavily capitalized ultra-nationalist separatist insurgent faction.</div>
           <div style="display:grid;gap:8px;margin-top:12px">
             <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(6,15,26,0.7)">
               <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-family:inherit;font-size:10.5px;letter-spacing:0.12em;color:var(--color-neutral-200);background:transparent;border:0;cursor:pointer;text-align:left"><span>HOSTILE TACTICS</span><span data-acc-caret style="font-size:9px;color:var(--color-accent)">▾</span></button>
@@ -447,17 +464,31 @@
               <div data-acc-body style="display:none;padding:0 12px 12px;font-size:11.5px;line-height:1.85;color:var(--color-neutral-400)">By embedding within the high-density civilian populace of Nova Kaelen's slums, the insurgents render traditional deployment, heavy artillery and conventional airstrikes entirely unviable. With public panic rising, state command structures face structural collapse.</div>
             </div>
             <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(6,15,26,0.7)">
-              <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-family:inherit;font-size:10.5px;letter-spacing:0.12em;color:var(--color-neutral-200);background:transparent;border:0;cursor:pointer;text-align:left"><span>SCI ORDER OF BATTLE — ESTIMATE</span><span data-acc-caret style="font-size:9px;color:var(--color-accent)">▾</span></button>
+              <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-family:inherit;font-size:10.5px;letter-spacing:0.12em;color:var(--color-neutral-200);background:transparent;border:0;cursor:pointer;text-align:left"><span>SCI ORDER OF BATTLE · ESTIMATE</span><span data-acc-caret style="font-size:9px;color:var(--color-accent)">▾</span></button>
               <div data-acc-body style="display:none;padding:0 12px 12px">
                 <div style="display:grid;gap:0;font-size:11px">
-                  <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="color:var(--color-neutral-400)">ARMED CADRE (EST.)</span><span style="color:var(--color-neutral-200)">2,400 — 3,100</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="color:var(--color-neutral-400)">ARMED CADRE (EST.)</span><span style="color:var(--color-neutral-200)">2,400 to 3,100</span></div>
                   <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="color:var(--color-neutral-400)">DRONE OPERATORS</span><span style="color:var(--color-neutral-200)">140+</span></div>
                   <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="color:var(--color-neutral-400)">CYBER CELLS</span><span style="color:var(--color-neutral-200)">09 IDENTIFIED / 03 MAPPED</span></div>
-                  <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="color:var(--color-neutral-400)">FUNDING ORIGIN</span><span data-redact data-value="OFFSHORE — SEE ANNEX D" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">███████████████</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--color-neutral-900)"><span style="color:var(--color-neutral-400)">FUNDING ORIGIN</span><span data-redact data-value="OFFSHORE / SEE ANNEX D" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">███████████████</span></div>
                   <div style="display:flex;justify-content:space-between;gap:10px;padding:7px 0"><span style="color:var(--color-neutral-400)">LEADERSHIP</span><span data-redact data-permanent="1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-alert-dim);box-shadow:0 0 12px rgba(255,122,69,0.16);cursor:not-allowed;user-select:none">███████████</span></div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div id="g7annexD" style="display:none;margin-top:14px;border:1px solid var(--color-alert);background:linear-gradient(180deg,rgba(168,75,40,0.32),rgba(6,15,26,0.92));padding:14px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline;margin-bottom:9px">
+            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-alert)">SEALED ANNEX D · UNLOCKED</span>
+            <span style="font-size:9px;letter-spacing:0.12em;color:var(--color-alert)">CLEARANCE ESCALATION · LVL-5 MATERIAL</span>
+          </div>
+          <div style="font-size:13px;letter-spacing:0.08em;color:var(--color-neutral-100);margin-bottom:9px">CONTINGENCY ORDER 88-B/2 · PRE-SIGNED</div>
+          <div style="font-family:var(--font-body);font-size:13px;line-height:1.8;color:var(--color-neutral-300);text-wrap:pretty">The disavowal order for Task Force G7 already exists. It was drafted, signed and dated before the unit's first operation, and is held unexecuted at High Command. Only the date of effect is blank.<br><br>The document does not require a failure to trigger. It requires a decision.</div>
+          <div style="margin-top:11px;display:grid;gap:6px;font-size:11px">
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--color-neutral-800)"><span style="color:var(--color-neutral-500)">DRAFTED</span><span style="color:var(--color-neutral-200)">BEFORE ACTIVATION</span></div>
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--color-neutral-800)"><span style="color:var(--color-neutral-500)">SIGNATORY</span><span style="color:var(--color-alert)">SAME HAND AS 1998</span></div>
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0"><span style="color:var(--color-neutral-500)">UNIT AWARENESS</span><span style="color:var(--color-neutral-200)">ASSUMED, NEVER CONFIRMED</span></div>
           </div>
         </div>
 
@@ -470,7 +501,7 @@
         </div>
       </div>
 
-      <!-- ─── PANEL 03 — LINEAGE ─── -->
+      <!-- ─── PANEL 03 · LINEAGE ─── -->
       <div data-panel="3" data-screen-label="03 LINEAGE" style="display:none">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;border-bottom:1px solid var(--color-neutral-800);padding-bottom:10px">
           <div>
@@ -481,7 +512,7 @@
         </div>
 
         <div style="border-left:2px solid var(--color-accent);padding-left:12px;margin-bottom:14px">
-          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-neutral-100)">SECTION I — GENERATION ONE</div>
+          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-neutral-100)">SECTION I · GENERATION ONE</div>
           <div style="font-size:10px;letter-spacing:0.14em;color:var(--color-neutral-500);margin-top:3px">THE 1998 "ARCLIGHT" CRISIS</div>
         </div>
 
@@ -496,7 +527,7 @@
 
         <div style="margin-top:14px;border:1px solid var(--color-neutral-800);padding:12px">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px">
-            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500)">GENERATION ONE — FINAL ROSTER</span>
+            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500)">GENERATION ONE · FINAL ROSTER</span>
             <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-alert)">ALL RECORDS EXPUNGED</span>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
@@ -511,15 +542,28 @@
           <div style="margin-top:10px;font-size:9.5px;line-height:1.8;color:var(--color-neutral-600)">FATE: 05 CONFIRMED DECEASED · 01 UNACCOUNTED · 01 RECORD SEALED BY TRIBUNAL ORDER.</div>
         </div>
 
+        <div id="g7annexB" style="display:none;margin-top:14px;border:1px solid var(--color-accent);background:linear-gradient(180deg,rgba(19,92,108,0.45),rgba(6,15,26,0.9));padding:14px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline;margin-bottom:9px">
+            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent)">SEALED ANNEX B · UNLOCKED</span>
+            <span style="font-size:9px;letter-spacing:0.12em;color:var(--color-alert)">GHOST FILE · RECOVERED FROM OVERWATCH CACHE</span>
+          </div>
+          <div style="font-size:13px;letter-spacing:0.08em;color:var(--color-accent-300);margin-bottom:9px">ARCLIGHT AFTER-ACTION · WITHHELD PAGE</div>
+          <div style="font-family:var(--font-body);font-size:13px;line-height:1.8;color:var(--color-neutral-300);text-wrap:pretty">Six operators entered the spillway. Five bodies were recovered and buried under falsified names. G1-07, listed as unaccounted, transmitted for eleven days after the disavowal order and was never located.<br><br>The final transmission was a single repeated line, logged and then classified: <span style="color:var(--color-accent-300)">"THE VALLEY IS DRY. TELL THEM WHO SIGNED."</span></div>
+          <div style="margin-top:11px;display:grid;gap:6px;font-size:11px">
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--color-neutral-800)"><span style="color:var(--color-neutral-500)">SIGNATORY OF THE DISAVOWAL</span><span style="color:var(--color-alert)">STILL SERVING</span></div>
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0"><span style="color:var(--color-neutral-500)">CURRENT POST</span><span style="color:var(--color-neutral-200)">VESPERIAN HIGH COMMAND</span></div>
+          </div>
+        </div>
+
         <div style="margin-top:20px;border-left:2px solid var(--color-accent);padding-left:12px;margin-bottom:14px">
-          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-neutral-100)">SECTION II — GENERATION TWO</div>
+          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-neutral-100)">SECTION II · GENERATION TWO</div>
           <div style="font-size:10px;letter-spacing:0.14em;color:var(--color-neutral-500);margin-top:3px">THE 2020s RESURRECTION</div>
         </div>
 
         <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start">
-          <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">POST-1998 STATUS</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">For over two decades "Group 7" remains a taboo military legend — a cautionary ghost story circulated among cadets to deter insubordination.</div></div>
+          <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">POST-1998 STATUS</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">For over two decades "Group 7" remains a taboo military legend: a cautionary ghost story circulated among cadets to deter insubordination.</div></div>
           <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">OPERATIONAL CRISIS</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">Destabilization of Nova Kaelen by the SCI proves traditional military doctrine entirely ineffective.</div></div>
-          <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">TACTICAL NEED</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">High command requires absolute deniability — operators authorized to execute extreme measures and absorb political blowback. They required ghosts.</div></div>
+          <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">TACTICAL NEED</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">High command requires absolute deniability: operators authorized to execute extreme measures and absorb political blowback. They required ghosts.</div></div>
           <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">RECRUITMENT PARAMETERS</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">The G7 framework is reinstated, sweeping the armed forces for seven isolated outcasts: highly lethal combatants with no family, zero political connections, nothing left to lose.</div></div>
           <div style="border:1px solid var(--color-neutral-800);padding:12px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">INDOCTRINATION</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-400)">Upon finalization, operators are briefed on the suppressed truth of Generation One's fate. Rather than retreating, the new team claims the G7 callsign as a badge of honour.</div></div>
           <div style="border:1px solid var(--color-accent-800);padding:12px;background:rgba(14,61,73,0.3)"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:5px">PSYCHOLOGICAL BOND</div><div style="font-size:11.5px;line-height:1.8;color:var(--color-neutral-300)">The squad operates with clear-eyed awareness that the government may ultimately target them as it did their predecessors. Shared expendability forged an impenetrable bond. They do not fight to serve politicians; their allegiance is bound strictly to Vesperia and to one another.</div></div>
@@ -527,17 +571,17 @@
 
         <div style="margin-top:20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
           <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500)">G7 VISUAL ARCHIVE</span>
-          <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-600)">04 PLATES / CAPTIONS SEALED</span>
+          <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-600)">04 PLATES / DROP FILES INTO /images</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
-          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><image-slot id="g7_archive_01" shape="rect" placeholder="PLATE 01"></image-slot></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-01</span><span data-redact data-value="KAELEN SPINE / NIGHT" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">██████████</span></figcaption></figure>
-          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><image-slot id="g7_archive_02" shape="rect" placeholder="PLATE 02"></image-slot></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-02</span><span data-redact data-value="STACK / PRE-BREACH" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">██████████</span></figcaption></figure>
-          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><image-slot id="g7_archive_03" shape="rect" placeholder="PLATE 03"></image-slot></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-03</span><span data-redact data-permanent="1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-alert-dim);box-shadow:0 0 12px rgba(255,122,69,0.16);cursor:not-allowed;user-select:none">██████████</span></figcaption></figure>
-          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><image-slot id="g7_archive_04" shape="rect" placeholder="PLATE 04"></image-slot></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-04</span><span data-redact data-value="EXFIL / DRY DOCK 09" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">██████████</span></figcaption></figure>
+          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><div data-imgslot style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:8px;background:repeating-linear-gradient(45deg,#08192400 0 7px,#0d222f 7px 14px);border:1px dashed var(--color-neutral-700)"><span style="font-size:8px;letter-spacing:0.16em;color:var(--color-neutral-600)">PLATE 01</span><span style="font-size:9px;line-height:1.4;color:var(--color-accent-300);word-break:break-all">images/03-archive-plate-01.jpg</span></div><img data-img src="images/03-archive-plate-01.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-01</span><span data-redact data-value="KAELEN SPINE / NIGHT" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">██████████</span></figcaption></figure>
+          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><div data-imgslot style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:8px;background:repeating-linear-gradient(45deg,#08192400 0 7px,#0d222f 7px 14px);border:1px dashed var(--color-neutral-700)"><span style="font-size:8px;letter-spacing:0.16em;color:var(--color-neutral-600)">PLATE 02</span><span style="font-size:9px;line-height:1.4;color:var(--color-accent-300);word-break:break-all">images/04-archive-plate-02.jpg</span></div><img data-img src="images/04-archive-plate-02.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-02</span><span data-redact data-value="STACK / PRE-BREACH" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">██████████</span></figcaption></figure>
+          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><div data-imgslot style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:8px;background:repeating-linear-gradient(45deg,#08192400 0 7px,#0d222f 7px 14px);border:1px dashed var(--color-neutral-700)"><span style="font-size:8px;letter-spacing:0.16em;color:var(--color-neutral-600)">PLATE 03</span><span style="font-size:9px;line-height:1.4;color:var(--color-accent-300);word-break:break-all">images/05-archive-plate-03.jpg</span></div><img data-img src="images/05-archive-plate-03.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-03</span><span data-redact data-permanent="1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-alert-dim);box-shadow:0 0 12px rgba(255,122,69,0.16);cursor:not-allowed;user-select:none">██████████</span></figcaption></figure>
+          <figure style="margin:0;border:1px solid var(--color-neutral-700);background:var(--color-neutral-900);padding:6px"><div style="position:relative;aspect-ratio:1/1;background:#04101a"><div data-imgslot style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:8px;background:repeating-linear-gradient(45deg,#08192400 0 7px,#0d222f 7px 14px);border:1px dashed var(--color-neutral-700)"><span style="font-size:8px;letter-spacing:0.16em;color:var(--color-neutral-600)">PLATE 04</span><span style="font-size:9px;line-height:1.4;color:var(--color-accent-300);word-break:break-all">images/06-archive-plate-04.jpg</span></div><img data-img src="images/06-archive-plate-04.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div><figcaption style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-600);margin-top:6px;display:flex;justify-content:space-between"><span>PLATE-04</span><span data-redact data-value="EXFIL / DRY DOCK 09" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">██████████</span></figcaption></figure>
         </div>
       </div>
 
-      <!-- ─── PANEL 04 — ROSTER ─── -->
+      <!-- ─── PANEL 04 · ROSTER ─── -->
       <div data-panel="4" data-screen-label="04 ROSTER" style="display:none">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;border-bottom:1px solid var(--color-neutral-800);padding-bottom:10px">
           <div>
@@ -557,21 +601,21 @@
 
         <div style="border:1px solid var(--color-accent-800);background:rgba(14,61,73,0.25);padding:13px;margin-bottom:16px">
           <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline;margin-bottom:9px">
-            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent)">CURRENT OPERATION — "IRONHOLD"</span>
-            <span style="font-size:9px;letter-spacing:0.12em;color:var(--color-alert);display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;background:var(--color-alert);border-radius:50%;animation:g7pulse 1.3s infinite"></span>IN PROGRESS — H+04:12</span>
+            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent)">CURRENT OPERATION · "IRONHOLD"</span>
+            <span style="font-size:9px;letter-spacing:0.12em;color:var(--color-alert);display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;background:var(--color-alert);border-radius:50%;animation:g7pulse 1.3s infinite"></span>IN PROGRESS · H+04:12</span>
           </div>
           <div style="display:grid;gap:7px;font-size:11px;line-height:1.6">
             <div style="display:grid;grid-template-columns:98px 1fr;gap:8px"><span style="color:var(--color-neutral-600);font-size:9px;letter-spacing:0.12em;align-self:center">OBJECTIVE</span><span style="color:var(--color-neutral-200)">Locate and extract SCI cell coordinator from a residential block in SEC-05.</span></div>
             <div style="display:grid;grid-template-columns:98px 1fr;gap:8px"><span style="color:var(--color-neutral-600);font-size:9px;letter-spacing:0.12em;align-self:center">ROE</span><span style="color:var(--color-neutral-200)">Suppressed weapons only. Zero civilian signature. No state markings.</span></div>
-            <div style="display:grid;grid-template-columns:98px 1fr;gap:8px"><span style="color:var(--color-neutral-600);font-size:9px;letter-spacing:0.12em;align-self:center">EXFIL</span><span style="color:var(--color-neutral-200)">Ground, via BR-01. Fallback: sewer line under Ashfall — mapped by TRACE.</span></div>
-            <div style="display:grid;grid-template-columns:98px 1fr;gap:8px"><span style="color:var(--color-neutral-600);font-size:9px;letter-spacing:0.12em;align-self:center">SUPPORT</span><span style="color:var(--color-alert)">NONE AUTHORIZED — UNIT IS UNACKNOWLEDGED</span></div>
+            <div style="display:grid;grid-template-columns:98px 1fr;gap:8px"><span style="color:var(--color-neutral-600);font-size:9px;letter-spacing:0.12em;align-self:center">EXFIL</span><span style="color:var(--color-neutral-200)">Ground, via BR-01. Fallback: sewer line under Ashfall, mapped by TRACE.</span></div>
+            <div style="display:grid;grid-template-columns:98px 1fr;gap:8px"><span style="color:var(--color-neutral-600);font-size:9px;letter-spacing:0.12em;align-self:center">SUPPORT</span><span style="color:var(--color-alert)">NONE AUTHORIZED · UNIT IS UNACKNOWLEDGED</span></div>
           </div>
         </div>
 
         <div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:8px">TASK ORGANISATION</div>
         <div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));align-items:start;margin-bottom:18px">
-          <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:6px">ALPHA — ENTRY</div><div style="font-size:11px;line-height:1.9;color:var(--color-neutral-300)">VANGUARD · ROOK · TRACE</div><div style="font-size:9.5px;color:var(--color-neutral-600);margin-top:4px">Point, breach, clear.</div></div>
-          <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:6px">BRAVO — SUPPORT</div><div style="font-size:11px;line-height:1.9;color:var(--color-neutral-300)">SLEDGE · PATCH</div><div style="font-size:9.5px;color:var(--color-neutral-600);margin-top:4px">Demolitions, casualty care, rear security.</div></div>
+          <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:6px">ALPHA · ENTRY</div><div style="font-size:11px;line-height:1.9;color:var(--color-neutral-300)">VANGUARD · ROOK · TRACE</div><div style="font-size:9.5px;color:var(--color-neutral-600);margin-top:4px">Point, breach, clear.</div></div>
+          <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:6px">BRAVO · SUPPORT</div><div style="font-size:11px;line-height:1.9;color:var(--color-neutral-300)">SLEDGE · PATCH</div><div style="font-size:9.5px;color:var(--color-neutral-600);margin-top:4px">Demolitions, casualty care, rear security.</div></div>
           <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:6px">OVERWATCH</div><div style="font-size:11px;line-height:1.9;color:var(--color-neutral-300)">WHISPER</div><div style="font-size:9.5px;color:var(--color-neutral-600);margin-top:4px">Elevated ISR, precision fire.</div></div>
           <div style="border:1px solid var(--color-neutral-800);padding:11px"><div style="font-size:9px;letter-spacing:0.14em;color:var(--color-accent);margin-bottom:6px">NET</div><div style="font-size:11px;line-height:1.9;color:var(--color-neutral-300)">GLITCH</div><div style="font-size:9.5px;color:var(--color-neutral-600);margin-top:4px">Signals, jamming, drone control.</div></div>
         </div>
@@ -582,7 +626,7 @@
           <div style="position:relative;border:1px solid var(--color-accent-700);background:rgba(14,61,73,0.3);padding:12px">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
               <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent);border:1px solid var(--color-accent-700);padding:3px 6px">G7-00</span>
-              <div style="flex:1;min-width:0"><div style="font-size:14px;letter-spacing:0.08em;color:var(--color-accent-300)">ROOK</div><div style="font-size:9.5px;color:var(--color-neutral-500)">IDENTITY SEALED</div></div>
+              <div style="flex:1;min-width:0"><div style="font-size:14px;letter-spacing:0.08em;color:var(--color-accent-300)">VAUGHN "ROOK"</div><div style="font-size:9.5px;color:var(--color-neutral-500)">SURNAME SEALED</div></div>
               <span style="width:6px;height:6px;background:var(--color-accent);border-radius:50%;animation:g7pulse 1.8s infinite"></span>
             </div>
             <div style="font-size:10px;letter-spacing:0.1em;color:var(--color-accent-300);margin-bottom:8px">LEAD BREACHER / CQB SPECIALIST</div>
@@ -608,7 +652,7 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px"><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">COMMAND</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">NEGOTIATION</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">CQB</span></div>
             <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;margin-top:6px;font-family:inherit;font-size:10px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:0;border-top:1px solid var(--color-neutral-900);cursor:pointer;text-align:left"><span>SERVICE HISTORY</span><span data-acc-caret style="color:var(--color-accent)">▾</span></button>
-            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Decorated former Special Forces officer stripped of rank after refusing an order that would have caused massive civilian casualties in Nova Kaelen. Acts as the calm strategic spine of G7.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500);font-style:normal">FIELD NOTE — "I already lost the career. I'm not losing the squad."</div></div>
+            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Decorated former Special Forces officer stripped of rank after refusing an order that would have caused massive civilian casualties in Nova Kaelen. Acts as the calm strategic spine of G7.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500);font-style:normal">FIELD NOTE: "I already lost the career. I'm not losing the squad."</div></div>
           </div>
 
           <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(13,28,43,0.6);padding:12px 12px 0">
@@ -625,7 +669,7 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px"><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">OVERWATCH</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">FIELDCRAFT</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">ISR</span></div>
             <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;margin-top:6px;font-family:inherit;font-size:10px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:0;border-top:1px solid var(--color-neutral-900);cursor:pointer;text-align:left"><span>SERVICE HISTORY</span><span data-acc-caret style="color:var(--color-accent)">▾</span></button>
-            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Raised in Vesperia's rugged eastern mountains. Served in an elite scout unit before her team was compromised by high-level government leaks. Provides overwatch and real-time feeds from Nova Kaelen's rooftops.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE — Logs longer static holds than any operator on record: 31 hours, SEC-02.</div></div>
+            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Raised in Vesperia's rugged eastern mountains. Served in an elite scout unit before her team was compromised by high-level government leaks. Provides overwatch and real-time feeds from Nova Kaelen's rooftops.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE: Logs longer static holds than any operator on record: 31 hours, SEC-02.</div></div>
           </div>
 
           <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(13,28,43,0.6);padding:12px 12px 0">
@@ -642,7 +686,7 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px"><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">EXPLOSIVES</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">STRUCTURES</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">SUPPRESSION</span></div>
             <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;margin-top:6px;font-family:inherit;font-size:10px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:0;border-top:1px solid var(--color-neutral-900);cursor:pointer;text-align:left"><span>SERVICE HISTORY</span><span data-acc-caret style="color:var(--color-accent)">▾</span></button>
-            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Ex-combat engineer specializing in explosive urban breaching. Recruited after taking the fall for a black-market weapons sting he had actually uncovered. The warm-hearted big brother of the squad off-duty.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE — Cooks for the team the night before every operation. Nobody has asked him to stop.</div></div>
+            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Ex-combat engineer specializing in explosive urban breaching. Recruited after taking the fall for a black-market weapons sting he had actually uncovered. The warm-hearted big brother of the squad off-duty.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE: Cooks for the team the night before every operation. Nobody has asked him to stop.</div></div>
           </div>
 
           <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(13,28,43,0.6);padding:12px 12px 0">
@@ -659,7 +703,7 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px"><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">TRAUMA SURGERY</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">TRIAGE</span></div>
             <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;margin-top:6px;font-family:inherit;font-size:10px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:0;border-top:1px solid var(--color-neutral-900);cursor:pointer;text-align:left"><span>SERVICE HISTORY</span><span data-acc-caret style="color:var(--color-accent)">▾</span></button>
-            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Former trauma surgeon at Nova Kaelen Central who lost his licence for treating wounded street refugees off the books. Copes with war via dry, morbid humour and fanatical loyalty to his team's survival.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE — Keeps a blood-type card for every operator taped inside his forearm plate.</div></div>
+            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Former trauma surgeon at Nova Kaelen Central who lost his licence for treating wounded street refugees off the books. Copes with war via dry, morbid humour and fanatical loyalty to his team's survival.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE: Keeps a blood-type card for every operator taped inside his forearm plate.</div></div>
           </div>
 
           <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(13,28,43,0.6);padding:12px 12px 0">
@@ -676,7 +720,7 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px"><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">INTRUSION</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">DRONE RECON</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">JAMMING</span></div>
             <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;margin-top:6px;font-family:inherit;font-size:10px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:0;border-top:1px solid var(--color-neutral-900);cursor:pointer;text-align:left"><span>SERVICE HISTORY</span><span data-acc-caret style="color:var(--color-accent)">▾</span></button>
-            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Former black-hat who infiltrated Vesperia's defence networks as a teenager. Given a choice between maximum security prison and G7 service; now handles drone recon, comms jamming and cracking enemy servers.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE — Still owns the conviction record that put her here. Framed, in the ready room.</div></div>
+            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Former black-hat who infiltrated Vesperia's defence networks as a teenager. Given a choice between maximum security prison and G7 service; now handles drone recon, comms jamming and cracking enemy servers.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE: Still owns the conviction record that put her here. Framed, in the ready room.</div></div>
           </div>
 
           <div data-acc style="border:1px solid var(--color-neutral-800);background:rgba(13,28,43,0.6);padding:12px 12px 0">
@@ -693,7 +737,20 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px"><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">NAVIGATION</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">TRACKING</span><span style="font-size:8.5px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:3px 6px">SUBTERRANEAN</span></div>
             <button type="button" data-acc-toggle style="width:100%;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0;margin-top:6px;font-family:inherit;font-size:10px;letter-spacing:0.12em;color:var(--color-neutral-500);background:transparent;border:0;border-top:1px solid var(--color-neutral-900);cursor:pointer;text-align:left"><span>SERVICE HISTORY</span><span data-acc-caret style="color:var(--color-accent)">▾</span></button>
-            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Born and raised in Nova Kaelen's poorest brutalist sectors. Knows the city's sewer networks, underground tunnels and forgotten subway lines better than anyone alive — mapping the path before Rook steps inside.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE — Has never once been issued a city map. Refuses them.</div></div>
+            <div data-acc-body style="display:none;font-size:11px;line-height:1.8;color:var(--color-neutral-400);padding-bottom:12px">Born and raised in Nova Kaelen's poorest brutalist sectors. Knows the city's sewer networks, underground tunnels and forgotten subway lines better than anyone alive, mapping the path before Rook steps inside.<div style="margin-top:8px;padding-left:9px;border-left:1px solid var(--color-accent-800);color:var(--color-neutral-500)">FIELD NOTE: Has never once been issued a city map. Refuses them.</div></div>
+          </div>
+        </div>
+
+        <div id="g7annexC" style="display:none;margin-top:14px;border:1px solid var(--color-accent);background:linear-gradient(180deg,rgba(19,92,108,0.45),rgba(6,15,26,0.9));padding:14px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline;margin-bottom:9px">
+            <span style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent)">SEALED ANNEX C · UNLOCKED</span>
+            <span style="font-size:9px;letter-spacing:0.12em;color:var(--color-alert)">ROLL CALL · NOT FILED WITH COMMAND</span>
+          </div>
+          <div style="font-size:13px;letter-spacing:0.08em;color:var(--color-accent-300);margin-bottom:9px">THE SEVENTH CHAIR</div>
+          <div style="font-family:var(--font-body);font-size:13px;line-height:1.8;color:var(--color-neutral-300);text-wrap:pretty">The ready room holds seven chairs for six operators and Rook. The seventh is left empty at every brief. Sledge sets a cup at it. Nobody has ever explained the practice to an outside officer, and no outside officer has been invited to a brief.<br><br>Asked once by an examiner, Vanguard filed a one-line answer: <span style="color:var(--color-accent-300)">"It is for whoever we do not bring back. It is easier to keep it empty than to learn a new number."</span></div>
+          <div style="margin-top:11px;display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-accent-300);border:1px solid var(--color-accent-800);padding:4px 7px">STANDING ORDER: NOBODY IS LEFT</span>
+            <span style="font-size:9px;letter-spacing:0.1em;color:var(--color-neutral-400);border:1px solid var(--color-neutral-800);padding:4px 7px">UNSANCTIONED · UNENFORCED · UNBROKEN</span>
           </div>
         </div>
 
@@ -704,16 +761,16 @@
             <div style="display:grid;grid-template-columns:110px 1fr 110px 110px;gap:10px;padding:10px 12px;border-bottom:1px solid var(--color-neutral-900);font-size:11px;color:var(--color-neutral-300)"><span style="color:var(--color-accent-300)">VANGUARD</span><span>COMMAND</span><span data-redact data-value="447.250" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">███████</span><span style="text-align:right">01</span></div>
             <div style="display:grid;grid-template-columns:110px 1fr 110px 110px;gap:10px;padding:10px 12px;border-bottom:1px solid var(--color-neutral-900);font-size:11px;color:var(--color-neutral-300)"><span style="color:var(--color-accent-300)">WHISPER</span><span>OVERWATCH</span><span data-redact data-value="447.900" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-accent-600);box-shadow:0 0 12px rgba(63,208,230,0.2);animation:g7redact 2.6s ease-in-out infinite;cursor:pointer;user-select:none">███████</span><span style="text-align:right">02</span></div>
             <div style="display:grid;grid-template-columns:110px 1fr 110px 110px;gap:10px;padding:10px 12px;border-bottom:1px solid var(--color-neutral-900);font-size:11px;color:var(--color-neutral-300)"><span style="color:var(--color-accent-300)">GLITCH</span><span>NET / EW</span><span data-redact data-permanent="1" style="display:inline-block;background:#04101a;color:#04101a;padding:2px 6px;border:1px dashed var(--color-alert-dim);box-shadow:0 0 12px rgba(255,122,69,0.16);cursor:not-allowed;user-select:none">███████</span><span style="text-align:right">02</span></div>
-            <div style="display:grid;grid-template-columns:110px 1fr 110px 110px;gap:10px;padding:10px 12px;font-size:11px;color:var(--color-neutral-300)"><span style="color:var(--color-accent-300)">ROOK</span><span>ALPHA — RECEIVE ONLY</span><span style="color:var(--color-neutral-600)">—</span><span style="text-align:right;color:var(--color-neutral-600)">SILENT</span></div>
+            <div style="display:grid;grid-template-columns:110px 1fr 110px 110px;gap:10px;padding:10px 12px;font-size:11px;color:var(--color-neutral-300)"><span style="color:var(--color-accent-300)">ROOK</span><span>ALPHA · RECEIVE ONLY</span><span style="color:var(--color-neutral-600)">NONE</span><span style="text-align:right;color:var(--color-neutral-600)">SILENT</span></div>
           </div>
         </div>
 
         <div style="margin-top:16px;border:1px solid var(--color-accent-800);background:rgba(14,61,73,0.22);padding:14px;text-align:center">
-          <div style="font-size:9px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:7px">UNIT MOTTO — UNOFFICIAL</div>
+          <div style="font-size:9px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:7px">UNIT MOTTO · UNOFFICIAL</div>
           <div style="font-size:14px;letter-spacing:0.14em;color:var(--color-accent-300)">"NO FLAG. NO NAME. NO WITNESSES."</div>
         </div>
 
-        <div style="margin-top:16px;border-top:1px solid var(--color-neutral-800);padding-top:12px;font-size:9.5px;line-height:1.9;letter-spacing:0.1em;color:var(--color-neutral-600)">END OF FILE 07 — NO FURTHER RECORDS RETAINED.<br>REPRODUCTION OF THIS DOCUMENT CONSTITUTES A TRIBUNAL OFFENCE.</div>
+        <div style="margin-top:16px;border-top:1px solid var(--color-neutral-800);padding-top:12px;font-size:9.5px;line-height:1.9;letter-spacing:0.1em;color:var(--color-neutral-600)">END OF FILE 07 · NO FURTHER RECORDS RETAINED.<br>REPRODUCTION OF THIS DOCUMENT CONSTITUTES A TRIBUNAL OFFENCE.</div>
       </div>
 
     </div>
@@ -728,7 +785,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;scanlines&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Terminal&quot;},&quot;autoplayAudio&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Terminal&quot;},&quot;redactionLocked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Terminal&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;scanlines&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Terminal&quot;},&quot;autoplayAudio&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Terminal&quot;},&quot;redactionLocked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Terminal&quot;},&quot;audioSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;uploads/bgm_music.mp3&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Terminal&quot;}}">
 class Component extends DCLogic {
   componentDidMount() { this.wire(); }
   componentDidUpdate() { this.wire(); }
@@ -755,11 +812,36 @@ class Component extends DCLogic {
     const btn = q('#g7audiobtn');
     if (audio) {
       audio.volume = 0.3;
-      audio.loop = true;
-      audio.addEventListener('ended', () => { audio.currentTime = 0; audio.play().catch(() => {}); });
+
+      /* the file carries ~15.5s of trailing silence, so loop manually inside
+         the musical body rather than letting the element loop the whole track */
+      const LOOP_START = 0.2, LOOP_END = 185.4;
+      const sources = [p.audioSrc, 'uploads/bgm_music.mp3', 'bgm_music.mp3',
+        'audio/bgm_music.mp3', 'assets/bgm_music.mp3'].filter(Boolean);
+      let si = 0, resolved = false;
+      audio.addEventListener('canplay', () => { resolved = true; });
+      audio.addEventListener('error', () => {
+        if (resolved) return;
+        si++;
+        if (si < sources.length) { audio.src = sources[si]; audio.load(); return; }
+        if (btn) {
+          btn.textContent = '!';
+          btn.style.color = 'var(--color-alert)';
+          btn.style.borderColor = 'var(--color-alert-dim)';
+          btn.title = 'Audio file not found. Tried: ' + sources.join(', ');
+        }
+      });
+      audio.src = sources[0];
+      audio.addEventListener('timeupdate', () => {
+        if (audio.currentTime >= LOOP_END) audio.currentTime = LOOP_START;
+      });
+      audio.addEventListener('ended', () => {
+        audio.currentTime = LOOP_START;
+        audio.play().catch(() => {});
+      });
       try {
         const t = parseFloat(localStorage.getItem('g7_bgm_t') || '0');
-        if (t > 0 && isFinite(t)) audio.currentTime = t;
+        if (t > 0 && isFinite(t) && t < LOOP_END) audio.currentTime = t;
       } catch (e) {}
       this.timers.push(setInterval(() => {
         try { if (!audio.paused) localStorage.setItem('g7_bgm_t', String(audio.currentTime)); } catch (e) {}
@@ -788,13 +870,13 @@ class Component extends DCLogic {
       ['ESTABLISHING SECURE CHANNEL', 'OK'],
       ['CIPHER VSP-256 / ROTATING KEY', 'OK'],
       ['NODE 07 HANDSHAKE', 'OK'],
-      ['BIOMETRIC PROXY — GUEST OVERRIDE', 'ACCEPTED'],
+      ['BIOMETRIC PROXY · GUEST OVERRIDE', 'ACCEPTED'],
       ['CLEARANCE ASSERTION LVL-4', 'PROVISIONAL'],
       ['MOUNT /VDN/PERS/FILE07', 'OK'],
-      ['INTEGRITY SCAN — 4,182 RECORDS', 'OK'],
-      ['MONITOR HOOK — TRIBUNAL 88-B', 'ACTIVE'],
+      ['INTEGRITY SCAN · 4,182 RECORDS', 'OK'],
+      ['MONITOR HOOK · TRIBUNAL 88-B', 'ACTIVE'],
       ['DECRYPTING COVER SHEET', 'OK'],
-      ['AWAITING OPERATOR INPUT', '—']
+      ['AWAITING OPERATOR INPUT', 'IDLE']
     ];
     const unlock = () => {
       if (!open) return;
@@ -804,7 +886,7 @@ class Component extends DCLogic {
       open.style.borderColor = 'var(--color-accent)';
       open.style.background = 'linear-gradient(180deg,rgba(19,92,108,0.45),rgba(6,15,26,0.2))';
       open.style.boxShadow = '0 0 26px rgba(63,208,230,0.18) inset';
-      open.textContent = '▶ AUTHORIZE ENTRY — OPEN DOSSIER FILE';
+      open.textContent = '▶ AUTHORIZE ENTRY · OPEN DOSSIER FILE';
     };
     if (log && open) {
       let i = 0;
@@ -818,7 +900,7 @@ class Component extends DCLogic {
         a.style.color = 'var(--color-neutral-400)';
         const b = document.createElement('span');
         b.textContent = state;
-        b.style.color = (state === 'OK' || state === 'ACCEPTED') ? 'var(--color-accent-300)' : (state === '—' ? 'var(--color-neutral-600)' : 'var(--color-alert)');
+        b.style.color = (state === 'OK' || state === 'ACCEPTED') ? 'var(--color-accent-300)' : (state === 'IDLE' ? 'var(--color-neutral-600)' : 'var(--color-alert)');
         row.appendChild(a); row.appendChild(b);
         log.appendChild(row);
         i++;
@@ -930,21 +1012,21 @@ class Component extends DCLogic {
     /* ── tactical map ── */
     const SECTORS = {
       apex: { code: 'DST-01', name: 'THE APEX', status: 'SECURE', ctl: 86, hot: false, note: 'Vertical mega-corporate core. Glitch holds a standing intrusion package against the tower data spine; state security is dense but bought.' },
-      vein: { code: 'DST-02', name: '"THE VEIN"', status: 'CHOKEPOINT', ctl: 74, hot: false, note: 'Kaelen River suspension bridge — the only vehicle crossing left intact. Tactical blockade points at both approaches; ambush site 04 sits on the western ramp.' },
+      vein: { code: 'DST-02', name: '"THE VEIN"', status: 'CHOKEPOINT', ctl: 74, hot: false, note: 'Kaelen River suspension bridge, the only vehicle crossing left intact. Tactical blockade points at both approaches; ambush site 04 sits on the western ramp.' },
       midway: { code: 'DST-03', name: 'THE MIDWAY', status: 'CONTESTED', ctl: 52, hot: false, note: 'Permanent gridlock friction point where the arterials converge. Convoys stall here; G7 treats every transit as a contact event.' },
-      sprawl: { code: 'DST-04', name: 'THE SPRAWL', status: 'VOLATILE', ctl: 38, hot: false, note: '"The Hive" — decaying civilian resistance pocket. Sympathetic population, active SCI recruitment centre, and the breached perimeter wall Rook opened on DEADBOLT.' },
+      sprawl: { code: 'DST-04', name: 'THE SPRAWL', status: 'VOLATILE', ctl: 38, hot: false, note: '"The Hive": decaying civilian resistance pocket. Sympathetic population, active SCI recruitment centre, and the breached perimeter wall Rook opened on DEADBOLT.' },
       docks: { code: 'DST-05', name: 'INDUSTRIAL DOCKS', status: 'MONITORED', ctl: 63, hot: false, note: 'Smuggling drop zone Delta. Container lines feed the sub-rail spur; three berths under standing surveillance, two knowingly left open.' },
-      rust: { code: 'DST-06', name: '"RUST-BOWL" TENEMENTS', status: 'HOSTILE', ctl: 11, hot: true, note: 'SCI stronghold. Tenement corridors are pre-registered CQB lanes — no armour, no air, no artillery. G7 defense perimeter holds the western and southern faces.' },
+      rust: { code: 'DST-06', name: '"RUST-BOWL" TENEMENTS', status: 'HOSTILE', ctl: 11, hot: true, note: 'SCI stronghold. Tenement corridors are pre-registered CQB lanes: no armour, no air, no artillery. G7 defense perimeter holds the western and southern faces.' },
       archive: { code: 'DST-07', name: 'MUNICIPAL ARCHIVE', status: 'OBJECTIVE', ctl: 69, hot: false, note: 'Central Municipal Archive and Sub-Station 4. Holds the pre-1998 record vault; contested by SCI sabotage vectors targeting the grid feed beneath it.' },
       power: { code: 'DST-08', name: 'POWER NODE 4', status: 'CONTESTED', ctl: 44, hot: true, note: 'Grid feed for the eastern districts. Repeated SCI sabotage; each blackout window is used to move cadre across the cliff road.' },
       ow1: { code: 'OW-01', name: 'WHISPER OVERWATCH', status: 'FRIENDLY', ctl: null, hot: false, note: 'Apex rooftop hide, 41 storeys. Covers the northern arterial and both Vein approaches. Occupied 19 of the last 24 hours.' },
       ow2: { code: 'OW-02', name: 'WHISPER OVERWATCH', status: 'FRIENDLY', ctl: null, hot: false, note: 'Midway water tower. Sightline down the gridlock corridor; primary counter-sniper position during convoy transits.' },
-      ow3: { code: 'OW-03', name: 'WHISPER OVERWATCH', status: 'FRIENDLY', ctl: null, hot: false, note: 'Rust-Bowl approach hide. Holds the western CQB lane entrance — the only overwatch inside the G7 defense perimeter.' },
+      ow3: { code: 'OW-03', name: 'WHISPER OVERWATCH', status: 'FRIENDLY', ctl: null, hot: false, note: 'Rust-Bowl approach hide. Holds the western CQB lane entrance, the only overwatch inside the G7 defense perimeter.' },
       ow4: { code: 'OW-04', name: 'WHISPER OVERWATCH', status: 'FRIENDLY', ctl: null, hot: false, note: 'Sprawl tenement roof. Watches the breached perimeter wall and the sub-rail surface access.' },
-      anvil: { code: 'G7-STG', name: 'STAGING — ANVIL', status: 'FRIENDLY', ctl: null, hot: false, note: 'Forward staging point in a condemned Sprawl block. No state markings, no fixed comms; struck and relocated every 72 hours.' },
-      trace: { code: 'G7-AST', name: 'ASSET — TRACE', status: 'FRIENDLY', ctl: null, hot: false, note: 'Trace holds the sub-rail access shaft here, mapping the tunnel run under the Rust-Bowl before Alpha element moves.' },
+      anvil: { code: 'G7-STG', name: 'STAGING · ANVIL', status: 'FRIENDLY', ctl: null, hot: false, note: 'Forward staging point in a condemned Sprawl block. No state markings, no fixed comms; struck and relocated every 72 hours.' },
+      trace: { code: 'G7-AST', name: 'ASSET · TRACE', status: 'FRIENDLY', ctl: null, hot: false, note: 'Trace holds the sub-rail access shaft here, mapping the tunnel run under the Rust-Bowl before Alpha element moves.' },
       sci1: { code: 'SCI-01', name: 'SCI CELL', status: 'HOSTILE', ctl: null, hot: true, note: 'Command cell tied to Power Node 4 sabotage. Estimated 20-30 armed cadre; drone launch signatures logged nightly.' },
-      sci2: { code: 'SCI-02', name: 'RECRUITMENT CENTRE', status: 'HOSTILE', ctl: null, hot: true, note: 'Sprawl storefront running open recruitment among the displaced. Strike authority withheld — civilian foot traffic is constant.' },
+      sci2: { code: 'SCI-02', name: 'RECRUITMENT CENTRE', status: 'HOSTILE', ctl: null, hot: true, note: 'Sprawl storefront running open recruitment among the displaced. Strike authority withheld: civilian foot traffic is constant.' },
       sci3: { code: 'SCI-03', name: 'AMBUSH SITE 04', status: 'HOSTILE', ctl: null, hot: true, note: 'Western bridge ramp. Site of the G7 convoy ambush; wreckage still in place and used as cover by SCI spotters.' },
       obj: { code: 'OBJ', name: 'OP IRONHOLD', status: 'ACTIVE OBJECTIVE', ctl: null, hot: true, note: 'Extraction target: SCI cell coordinator held in the archive sub-station. Suppressed weapons only, zero civilian signature.' }
     };
@@ -982,6 +1064,193 @@ class Component extends DCLogic {
       if (m) window.scrollTo({ top: m.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
     }));
     selectSector('apex');
+
+    /* ── image placeholders: hide the <img> until the real file exists ── */
+    qa('[data-img]').forEach((im) => {
+      const hide = () => { im.style.display = 'none'; };
+      im.addEventListener('error', hide);
+      if (im.complete && im.naturalWidth === 0) hide();
+    });
+
+    /* ── sealed annexes: four hidden records, each earned ──
+       A · DEEP DECRYPT       break six redaction bars anywhere in the file
+       B · GHOST FILE         take the four numbered Whisper pins on the map, in order
+       C · ROLL CALL          open every operator service history on Sheet 04
+       D · CLEARANCE ESCALATION  press and hold the LVL-4 badge for three seconds */
+    const ANNEX_KEY = 'g7_annexes';
+    let found = {};
+    try { found = JSON.parse(localStorage.getItem(ANNEX_KEY) || '{}') || {}; } catch (e) {}
+    const countEl = q('#g7annexcount');
+    const annexBtn = q('#g7annexbtn');
+    const KEYS = ['a', 'b', 'c', 'd'];
+    const SHEET_OF = { a: 'SHEET 01 · IDENTIFICATION', b: 'SHEET 03 · UNIT LINEAGE', c: 'SHEET 04 · ROSTER', d: 'SHEET 02 · THEATRE' };
+    const HINTS = {
+      a: 'ANNEX A · break six redaction bars anywhere in the file. Sheets 01 and 02 hold most of them.',
+      b: 'ANNEX B · take the four numbered Whisper overwatch pins on the Nova Kaelen map, in order, 1 through 4.',
+      c: 'ANNEX C · open every operator service history on Sheet 04. All six.',
+      d: 'ANNEX D · press and hold the LVL-4 clearance badge in this header for three seconds.'
+    };
+    const foundCount = () => KEYS.filter((k) => found[k]).length;
+
+
+
+    /* single-slot terminal notice: a new message replaces the one on screen */
+    let toastEl = null, toastT = null;
+    const toast = (title, body) => {
+      clearTimeout(toastT);
+      if (!toastEl || !toastEl.isConnected) {
+        toastEl = document.createElement('div');
+        toastEl.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(38px + env(safe-area-inset-bottom));z-index:70;border:1px solid var(--color-accent);background:rgba(6,15,26,0.97);padding:12px 13px;font-family:inherit;box-shadow:0 0 28px rgba(63,208,230,0.25);max-width:560px;margin:0 auto';
+        root.appendChild(toastEl);
+      }
+      const el = toastEl;
+      el.style.opacity = '1';
+      el.style.transition = 'none';
+      el.innerHTML = '<div style="font-size:9.5px;letter-spacing:0.2em;color:var(--color-accent);margin-bottom:5px">' + title + '</div><div style="font-size:11px;line-height:1.7;color:var(--color-neutral-300)">' + body + '</div>';
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = 'g7sheet .26s ease';
+      toastT = setTimeout(() => {
+        el.style.transition = 'opacity .4s';
+        el.style.opacity = '0';
+        setTimeout(() => { if (el === toastEl) { el.remove(); toastEl = null; } }, 420);
+      }, 4600);
+    };
+
+    const paintAnnex = () => {
+      const n = foundCount();
+      if (countEl) countEl.textContent = n + '/4';
+      if (annexBtn) {
+        annexBtn.style.color = n ? 'var(--color-accent)' : 'var(--color-neutral-500)';
+        annexBtn.style.borderColor = n ? 'var(--color-accent-700)' : 'var(--color-neutral-800)';
+      }
+      KEYS.forEach((k) => {
+        const el = q('#g7annex' + k.toUpperCase());
+        if (el) el.style.display = found[k] ? 'block' : 'none';
+      });
+    };
+
+    const announce = (which, code, title, body) => {
+      const left = 4 - foundCount();
+      const el = document.createElement('div');
+      el.style.cssText = 'position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,10,18,0.84);animation:g7sheet .3s ease';
+      const card = document.createElement('div');
+      card.style.cssText = 'width:100%;max-width:520px;max-height:90dvh;overflow:auto;border:1px solid var(--color-accent);background:linear-gradient(180deg,rgba(19,92,108,0.5),rgba(6,15,26,0.97));box-shadow:0 0 44px rgba(63,208,230,0.3);font-family:inherit';
+      card.innerHTML =
+        '<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 13px;border-bottom:1px solid var(--color-accent-800);font-size:9px;letter-spacing:0.2em;color:var(--color-accent)"><span>SEAL BROKEN</span><span style="color:var(--color-alert)">TRIBUNAL BREACH LOGGED</span></div>' +
+        '<div style="padding:16px 13px 13px"><div style="font-size:10px;letter-spacing:0.2em;color:var(--color-neutral-500);margin-bottom:7px">' + code + '</div>' +
+        '<div style="font-size:19px;letter-spacing:0.06em;color:var(--color-accent-300);margin-bottom:10px">' + title + '</div>' +
+        '<div style="font-size:12px;line-height:1.8;color:var(--color-neutral-300)">' + body + '</div>' +
+        '<div style="margin-top:12px;padding-top:11px;border-top:1px solid var(--color-neutral-800);display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:0.12em"><span style="color:var(--color-neutral-500)">FILED UNDER</span><span style="color:var(--color-neutral-200)">' + SHEET_OF[which] + '</span></div>' +
+        '<div style="margin-top:9px;border:1px solid ' + (left ? 'var(--color-accent-800)' : 'var(--color-alert-dim)') + ';padding:11px;text-align:center;font-size:11px;letter-spacing:0.14em;color:' + (left ? 'var(--color-accent-300)' : 'var(--color-alert)') + '">' +
+        (left ? left + ' SEALED ANNEX' + (left > 1 ? 'ES' : '') + ' REMAIN' : 'ALL FOUR ANNEXES RECOVERED · ARCHIVE FULLY BREACHED') + '</div></div>';
+      const ack = document.createElement('button');
+      ack.type = 'button';
+      ack.textContent = 'ACKNOWLEDGE';
+      ack.style.cssText = 'width:100%;min-height:52px;font-family:inherit;font-size:11px;letter-spacing:0.2em;color:var(--color-accent);background:rgba(19,92,108,0.4);border:0;border-top:1px solid var(--color-accent-800);cursor:pointer';
+      ack.addEventListener('click', () => el.remove());
+      card.appendChild(ack);
+      el.appendChild(card);
+      el.addEventListener('click', (ev) => { if (ev.target === el) el.remove(); });
+      root.appendChild(el);
+    };
+
+    const unlockAnnex = (which, code, title, body) => {
+      if (found[which]) return;
+      found[which] = true;
+      try { localStorage.setItem(ANNEX_KEY, JSON.stringify(found)); } catch (e) {}
+      paintAnnex();
+      announce(which, code, title, body);
+    };
+    paintAnnex();
+
+    if (annexBtn) annexBtn.addEventListener('click', () => {
+      const left = 4 - foundCount();
+      const lines = KEYS.map((k) => found[k]
+        ? '<span style="color:var(--color-accent-300)">ANNEX ' + k.toUpperCase() + ' · recovered. Filed under ' + SHEET_OF[k] + '.</span>'
+        : HINTS[k]);
+      toast(left ? left + ' OF 4 ANNEXES STILL SEALED' : 'ALL FOUR ANNEXES RECOVERED', lines.join('<br><br>'));
+    });
+
+    /* A — redaction bars */
+    let nudged = false;
+    root.addEventListener('click', (e) => {
+      if (!e.target.closest('[data-redact]')) return;
+      setTimeout(() => {
+        const n = qa('[data-redact][data-revealed="1"]').length;
+        if (n >= 6) unlockAnnex('a', 'ANNEX A · DEEP DECRYPT', 'VAUGHN ELIAS MARROW', 'Six seals broken. The cipher gave up the subject full name, and with it the reason the surname was struck from the state register in 1998.');
+        else if (n >= 3 && !found.a && !nudged) { nudged = true; toast('DECRYPTION PATTERN DETECTED', n + ' of 6 seals broken. The cipher weakens with each one.'); }
+      }, 0);
+    });
+
+    /* B — the overwatch net, walked in order */
+    let owStep = 0;
+    const owGroups = ['ow1', 'ow2', 'ow3', 'ow4'].map((id) => root.querySelector('#g7map [data-sector="' + id + '"]'));
+    const paintOw = () => owGroups.forEach((g, i) => {
+      const ring = g && g.querySelector('[data-owring]');
+      if (ring) ring.setAttribute('opacity', (found.b || i < owStep) ? '1' : '0');
+    });
+    owGroups.forEach((g, idx) => {
+      if (!g) return;
+      g.addEventListener('click', () => {
+        if (found.b) return;
+        if (idx === owStep) {
+          owStep++;
+          paintOw();
+          if (owStep < 4) toast('OVERWATCH NET · ' + owStep + ' OF 4', 'Whisper hides are numbered on the map. Take them in sequence, 1 through 4.');
+          else unlockAnnex('b', 'ANNEX B · GHOST FILE', 'THE ARCLIGHT WITHHELD PAGE', 'Whisper cache pulled from the overwatch net. It holds the after-action page High Command never filed, and the last transmission of G1-07.');
+        } else {
+          const was = owStep;
+          owStep = (idx === 0 ? 1 : 0);
+          paintOw();
+          if (was > 0) toast('SEQUENCE BROKEN', 'Hide ' + (was + 1) + ' was expected. Start again at hide 1.');
+        }
+      });
+    });
+    paintOw();
+
+    /* C — every operator service history opened */
+    const rosterToggles = qa('[data-panel="4"] [data-acc-toggle]');
+    root.addEventListener('click', (e) => {
+      if (found.c || !e.target.closest('[data-panel="4"] [data-acc-toggle]')) return;
+      setTimeout(() => {
+        const opened = rosterToggles.filter((t) => {
+          const b = t.parentElement.querySelector('[data-acc-body]');
+          return b && b.style.display !== 'none';
+        }).length;
+        if (opened >= rosterToggles.length && rosterToggles.length) {
+          unlockAnnex('c', 'ANNEX C · ROLL CALL', 'THE SEVENTH CHAIR', 'Every service history read. What the six records share is not written in any of them, and it has been filed here instead.');
+        } else if (opened >= 3 && !found.c && !this._rc) { this._rc = true; toast('ROLL CALL · ' + opened + ' OF ' + rosterToggles.length, 'Read every operator service history on this sheet.'); }
+      }, 0);
+    });
+
+    /* D — hold the clearance badge */
+    const lvl = q('#g7lvl'), lvlFill = q('#g7lvlfill');
+    if (lvl) {
+      let holdT = null, raf = null, t0 = 0;
+      const stop = () => {
+        clearTimeout(holdT); cancelAnimationFrame(raf); holdT = null;
+        if (lvlFill) lvlFill.style.width = '0%';
+      };
+      const step = () => {
+        if (!holdT) return;
+        const pcnt = Math.min(100, ((Date.now() - t0) / 3000) * 100);
+        if (lvlFill) lvlFill.style.width = pcnt + '%';
+        raf = requestAnimationFrame(step);
+      };
+      const startHold = (ev) => {
+        if (found.d || holdT) return;
+        ev.preventDefault();
+        t0 = Date.now();
+        holdT = setTimeout(() => {
+          stop();
+          unlockAnnex('d', 'ANNEX D · CLEARANCE ESCALATION', 'CONTINGENCY ORDER 88-B/2', 'The guest override held long enough to assert LVL-5. One document sits behind that line, and it was written before the unit ever deployed.');
+        }, 3000);
+        step();
+      };
+      lvl.addEventListener('pointerdown', startHold);
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => lvl.addEventListener(ev, stop));
+    }
 
     /* ── live chrome ── */
     const clock = q('#g7clock');
